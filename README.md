@@ -1,10 +1,8 @@
-# ToDo app (Testtask)
+# App for get a current data of the weather (Testtask)
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/7eda00f3ba3e137eefdc/maintainability)](https://codeclimate.com/github/loukianen/testtask-2021-softlex/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/100c956d49d955217d82/maintainability)](https://codeclimate.com/github/loukianen/current-weather/maintainability)
 
-App shows paginated and sorted list of task, which store at a remote server. Everyone can see the list and add new task. Only admin can edit tasks and mark as done. App provide information whether task edited and done.
-
-[The customer is SOFTLEX](http://softlex.pro/).
+App shows the current weather in a chosen sity.
 
 ## Installation
 
