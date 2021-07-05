@@ -1,0 +1,42 @@
+:root {
+  --border-thick: 3px;
+  --border-thin: 1px;
+  --ship-border: #024C68;
+  --bg-field: #e3f2fd;
+}
+
+.desctop {
+  position: relative;
+  max-width: 1366px;
+  max-height: 1024px;
+
+  background: #FFFFFF;
+}
+
+.rectangle {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  max-width: 1366px;
+  max-height: 1024px;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+
+  background: #498CEC;
+  border: 1px solid #979797;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  #centerField {
+    flex: 0 1 360px;
+  }
+}
+
+@media (min-width: 992px) {
+  #centerField {
+    min-width: 240px;
+  }
+}
