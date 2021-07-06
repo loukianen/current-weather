@@ -1,4 +1,7 @@
 import React from 'react';
+import Header from './Header.jsx';
+import MiddleBlock from './MiddleBlock.jsx';
+import Footer from './Footer.jsx';
 
 class App extends React.Component {
   constructor() {
@@ -8,9 +11,13 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="desktop">
         <div className="rectangle">
-          {this.text}
+          <div className="info-area">
+            <Header />
+            <MiddleBlock />
+            <Footer />
+          </div>
         </div>
       </div>
     );

@@ -5,18 +5,17 @@
   --bg-field: #e3f2fd;
 }
 
-.desctop {
-  position: relative;
-  max-width: 1366px;
-  max-height: 1024px;
-
+.desktop {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
   background: #FFFFFF;
 }
 
 .rectangle {
-  position: absolute;
-  height: 100%;
-  width: 100%;
+  height: 1024px;
+  width: 1366px;
   max-width: 1366px;
   max-height: 1024px;
   left: 0%;
@@ -27,6 +26,92 @@
   background: #498CEC;
   border: 1px solid #979797;
   box-sizing: border-box;
+
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: normal;
+
+  color: #FFFFFF;
+}
+
+.info-area {
+  height: 80.77%;
+  width: 87.26%;
+  margin-left: 7.25%;
+  margin-right: 5.49%;
+  margin-top: 7.32%;
+  margin-bottom: 11.91%;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+}
+
+.group {
+  flex: auto;
+  font-size: 18px;
+  line-height: 22px;
+  max-height: 33.33%;
+  border: 1px solid gray;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.city-buttons {
+  display: flex;
+}
+
+.measure-units-switch {
+  display: flex;
+}
+
+.measure-units-switch > .item {
+  flex: auto;
+  align-self: flex-start;
+}
+
+.middle-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.middle-block > .item {
+  text-align: center;
+  border: 1px solid green;
+}
+
+.main-block {
+  display: flex;
+  flex-grow: 2;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.whether-picture {
+  max-width: 200px;
+  max-height: 200px;
+  align-self: center;
+}
+
+.temperture {
+  align-self: center;
+  font-size: 180px;
+}
+
+.wether-description {
+  min-height: 22px;
+}
+
+.footer {
+  display: flex;
+}
+
+.footer > .item {
+  flex: auto;
+  align-self: flex-end;
 }
 
 @media (min-width: 768px) {
