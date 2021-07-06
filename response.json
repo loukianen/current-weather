@@ -1,0 +1,45 @@
+{
+  "coord":
+  {
+    "lon":73.4,
+    "lat":55
+  },
+  "weather": [
+    {
+      "id":802,
+      "main":"Clouds",
+      "description":"переменная облачность",
+      "icon":"03d"
+    }
+  ],
+  "base":"stations",
+  "main":
+  {
+    "temp":18.94,
+    "feels_like":18.33,
+    "temp_min":18.94,
+    "temp_max":18.94,
+    "pressure":1009,
+    "humidity":55
+  },
+  "visibility":10000,
+  "wind":
+  {
+    "speed":6,
+    "deg":20
+  },
+  "clouds":{"all":40},
+  "dt":1625576043,
+  "sys":
+  {
+    "type":1,
+    "id":8960,
+    "country":"RU",
+    "sunrise":1625524582,
+    "sunset":1625586331
+  },
+  "timezone":21600,
+  "id":1496153,
+  "name":"Омск",
+  "cod":200
+}

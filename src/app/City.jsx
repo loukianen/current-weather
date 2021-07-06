@@ -1,20 +1,23 @@
 import React from 'react';
 
-const City = () => (
-  <div className="city">
-    <form id="cooseCity">
-      <div>
-        Омск
-      </div>
-      <div className="city-buttons">
-        <button type="button">Сменить город</button>
+const City = (props) => {
+  const { cityName } = props;
+  return (
+    <div className="city">
+      <div id="cooseCity">
         <div>
-          <img src="img/location.png" alt="" />
-          <button type="button">Мое местоположение</button>
+          {cityName}
+        </div>
+        <div className="city-buttons">
+          <button type="button">Сменить город</button>
+          <div>
+            <img src="img/location.png" alt="" />
+            <button type="button">Мое местоположение</button>
+          </div>
         </div>
       </div>
-    </form>
-  </div>
-);
+    </div>
+  );
+};
 
 export default City;
