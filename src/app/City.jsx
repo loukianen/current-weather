@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { getWeatherData } from './utils';
 
 const City = (props) => {
@@ -10,7 +11,8 @@ const City = (props) => {
 
   const handleGeoClick = () => {
     navigator.geolocation.getCurrentPosition(({ coords }) => {
-      getWeatherData(coords, setCommonState);
+      const { latitude, longitude } = coords;
+      getWeatherData({ lat: latitude, lon: longitude }, setCommonState);
     });
   };
 
@@ -30,6 +32,11 @@ const City = (props) => {
       </div>
     </div>
   );
+};
+
+City.propTypes = {
+  setCommonState: PropTypes.func.isRequired,
+  cityName: PropTypes.string.isRequired,
 };
 
 export default City;

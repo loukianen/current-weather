@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './Header.jsx';
 import MiddleBlock from './MiddleBlock.jsx';
 import Footer from './Footer.jsx';
-import { getWeatherData } from './utils';
+import { getWeatherData, getSavedCoords, isCoordsValid } from './utils';
 
 class App extends React.Component {
   constructor() {
@@ -14,12 +14,11 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const savedData = window.localStorage.getItem('currentWeatherCoords');
-    const lastCoords = savedData === null ? {} : JSON.parse(savedData);
-    if (!lastCoords.latitude || !lastCoords.longitude) {
-      this.getWeatherDataWithGeoposition();
-    } else {
+    const lastCoords = getSavedCoords();
+    if (isCoordsValid(lastCoords)) {
       getWeatherData(lastCoords, this.setCommonState());
+    } else {
+      this.getWeatherDataWithGeoposition();
     }
   }
 
@@ -29,7 +28,8 @@ class App extends React.Component {
 
   getWeatherDataWithGeoposition() {
     navigator.geolocation.getCurrentPosition(({ coords }) => {
-      getWeatherData(coords, this.setCommonState());
+      const { latitude, longitude } = coords;
+      getWeatherData({ lat: latitude, lon: longitude }, this.setCommonState());
     });
   }
 

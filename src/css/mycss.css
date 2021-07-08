@@ -63,6 +63,22 @@
   display: flex;
 }
 
+.form-city-name {
+  z-index: 2;
+}
+
+.variants {
+  display: flex;
+  flex-direction: column;
+  max-height: 150px;
+  z-index: 2;
+}
+
+.var-button {
+  text-align: left !important;
+  z-index: 1;
+}
+
 .measure-units-switch {
   display: flex;
 }

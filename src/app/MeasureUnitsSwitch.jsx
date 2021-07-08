@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const MeasureUnitsSwitch = (props) => {
   const { degrees, setCommonState } = props;
@@ -19,6 +20,11 @@ const MeasureUnitsSwitch = (props) => {
       <button className="item" type="button" onClick={handleClick} disabled={!isCelsius}>F</button>
     </div>
   );
+};
+
+MeasureUnitsSwitch.propTypes = {
+  setCommonState: PropTypes.func.isRequired,
+  degrees: PropTypes.string.isRequired,
 };
 
 export default MeasureUnitsSwitch;

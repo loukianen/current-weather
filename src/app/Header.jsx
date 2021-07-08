@@ -1,10 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import City from './City.jsx';
 import CitySelection from './CitySelection.jsx';
 import MeasureUnitsSwitch from './MeasureUnitsSwitch.jsx';
 
 const Header = (props) => {
-  const { mode, name, deg, setCommonState } = props;
+  const {
+    mode, name, deg, setCommonState,
+  } = props;
   return (
     <div className="group header">
       {mode === 'show'
@@ -13,6 +16,13 @@ const Header = (props) => {
       <MeasureUnitsSwitch degrees={deg} setCommonState={setCommonState} />
     </div>
   );
+};
+
+Header.propTypes = {
+  setCommonState: PropTypes.func.isRequired,
+  mode: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  deg: PropTypes.string.isRequired,
 };
 
 export default Header;

@@ -1,33 +1,37 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Footer = (props) => {
   const {
-    pres, hum, speed, direction, pop
+    pres, hum, speed, direction, pop,
   } = props;
-  const windSpeed = `${speed} м/с, ${direction}`;
-  const atmosphericPressure = `${pres} мм рт. ст.`;
-  const humidity = `${hum}%`;
-  const probabilityOfPrecipitation = `${pop}%`;
+  const windSpeed = { blockName: 'Ветер', value: `${speed} м/с, ${direction}` };
+  const atmosphericPressure = { blockName: 'Давление', value: `${pres} мм рт. ст.` };
+  const humidity = { blockName: 'Влажность', value: `${hum}%` };
+  const probabilityOfPrecipitation = { blockName: 'Вероятность дождя', value: `${pop}%` };
+
+  const renderData = [windSpeed, atmosphericPressure, humidity, probabilityOfPrecipitation];
+
+  const renderWeatherBlocks = () => renderData.map(({ blockName, value }) => (
+    <div key={blockName} className="item">
+      <div>{blockName}</div>
+      <div>{value}</div>
+    </div>
+  ));
+
   return (
     <div className="group footer">
-      <div className="item">
-        <div>Ветер</div>
-        <div>{windSpeed}</div>
-      </div>
-      <div className="item">
-        <div>Давление</div>
-        <div>{atmosphericPressure}</div>
-      </div>
-      <div className="item">
-        <div>Влажность</div>
-        <div>{humidity}</div>
-      </div>
-      <div className="item">
-        <div>Вероятность дождя</div>
-        <div>{probabilityOfPrecipitation}</div>
-      </div>
+      {renderWeatherBlocks}
     </div>
   );
+};
+
+Footer.propTypes = {
+  pres: PropTypes.number.isRequired,
+  hum: PropTypes.number.isRequired,
+  speed: PropTypes.number.isRequired,
+  direction: PropTypes.string.isRequired,
+  pop: PropTypes.number.isRequired,
 };
 
 export default Footer;
