@@ -19,15 +19,15 @@ const City = (props) => {
   return (
     <div className="city">
       <div id="cooseCity">
-        <div>
+        <div className="city-name">
           {cityName}
         </div>
-        <div className="city-buttons">
-          <button type="button" onClick={handleChangeClick}>Сменить город</button>
-          <div>
-            <img src="img/location.png" alt="" />
-            <button type="button" onClick={handleGeoClick}>Мое местоположение</button>
-          </div>
+        <div className="city-buttons-block">
+          <button className="city-button" type="button" onClick={handleChangeClick}>Сменить город</button>
+          <button className="city-button" type="button" onClick={handleGeoClick}>
+            <img className="arrow" src="img/location.png" alt="" />
+            Мое местоположение
+          </button>
         </div>
       </div>
     </div>

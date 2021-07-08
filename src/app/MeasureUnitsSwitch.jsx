@@ -13,11 +13,13 @@ const MeasureUnitsSwitch = (props) => {
 
   return (
     <div className="measure-units-switch">
-      <div>
+      <div className="degrees-simbol">
         °
       </div>
-      <button className="item" type="button" onClick={handleClick} disabled={isCelsius}>C</button>
-      <button className="item" type="button" onClick={handleClick} disabled={!isCelsius}>F</button>
+      <div className="degrees-buttons-block">
+        <button className="c-button item" type="button" onClick={handleClick} disabled={isCelsius}>C</button>
+        <button className="f-button item" type="button" onClick={handleClick} disabled={!isCelsius}>F</button>
+      </div>
     </div>
   );
 };

@@ -44,16 +44,18 @@ const CitySelection = (props) => {
     ));
   };
 
-  const optionsSize = variants.length < 7 ? variants.length : 7;
+  const optionsSize = variants.length < 7 ? variants.length + 1 : 7 + 1;
   /* eslint-disable react/no-unknown-property */
   return (
     <div className="city-select-container">
       <form className="form-city-name" onSubmit={handleSubmit}>
-        <input name="city" value={text} autocomplete="off" onChange={handleChangeText} />
-        <button type="submit">OK</button>
+        <div className="input-city-name-block">
+          <input className="input-city-name" name="city" value={text} autocomplete="off" onChange={handleChangeText} />
+          <button className="city-name-submit-button" type="submit">OK</button>
+        </div>
       </form>
       <div className="variants">
-        <select size={optionsSize}>
+        <select className="select-city-name" size={optionsSize} hidden={variants.length === 0}>
           {renderVariants()}
         </select>
       </div>

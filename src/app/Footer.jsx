@@ -14,14 +14,14 @@ const Footer = (props) => {
 
   const renderWeatherBlocks = () => renderData.map(({ blockName, value }) => (
     <div key={blockName} className="item">
-      <div>{blockName}</div>
-      <div>{value}</div>
+      <div className="weather-block-name">{blockName}</div>
+      <div className="weather-block-value">{value}</div>
     </div>
   ));
 
   return (
     <div className="group footer">
-      {renderWeatherBlocks}
+      {renderWeatherBlocks()}
     </div>
   );
 };
