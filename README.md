@@ -4,6 +4,10 @@
 
 App shows the current weather in a chosen sity.
 
+## To app
+
+https://current-weather-gamma.vercel.app/
+
 ## Installation
 
 Install:
@@ -18,6 +22,8 @@ $ make lint
 ```
 
 ## Usage
+
+
 
 ### Simple run
 

@@ -7,6 +7,20 @@ export const apiConfig = {
   appId: '97d19b5fe75467c34c18e4455586aa9d',
 };
 
+export const initState = {
+  degrees: 'Celsius', // 'Fahrenheit'
+  mode: 'show', // 'selection'
+  name: 'Москва',
+  temp: 18,
+  icon: '01d',
+  pressure: 0,
+  humidity: 0,
+  speed: 0,
+  direction: '',
+  pop: 0,
+  description: 'Загрузка данных. Пожалуйста, подождите',
+};
+
 export const getVariants = ({ city, cityIds }, str) => {
   const strNorm = str.toLowerCase();
   const suitCityIds = cityIds.filter(

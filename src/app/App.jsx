@@ -2,15 +2,14 @@ import React from 'react';
 import Header from './Header.jsx';
 import MiddleBlock from './MiddleBlock.jsx';
 import Footer from './Footer.jsx';
-import { getWeatherData, getSavedCoords, isCoordsValid } from './utils';
+import {
+  getWeatherData, getSavedCoords, isCoordsValid, initState,
+} from './utils';
 
 class App extends React.Component {
   constructor() {
     super();
-    this.state = {
-      degrees: 'Celsius', // 'Fahrenheit'
-      mode: 'show', // 'selection'
-    };
+    this.state = { ...initState };
   }
 
   componentDidMount() {
