@@ -72,7 +72,7 @@ const getWindDirection = (value) => {
 };
 
 export const isCoordsValid = (coords) => {
-  if (!coords !== null && coords.lat && coords.lon) {
+  if (coords !== null && coords.lat && coords.lon) {
     const { lat, lon } = coords;
     return lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180;
   }
