@@ -9,7 +9,7 @@ const Header = (props) => {
     mode, name, deg, setCommonState,
   } = props;
   return (
-    <div className="group header">
+    <div className="info-area-item header">
       {mode === 'show'
         ? <City cityName={name} setCommonState={setCommonState} />
         : <CitySelection setCommonState={setCommonState} />}
@@ -24,5 +24,5 @@ Header.propTypes = {
   name: PropTypes.string.isRequired,
   deg: PropTypes.string.isRequired,
 };
-
+//  <MeasureUnitsSwitch degrees={deg} setCommonState={setCommonState} />
 export default Header;

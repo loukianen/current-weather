@@ -21,9 +21,7 @@ make install
 $ make lint
 ```
 
-## Usage
-
-
+## Local usage
 
 ### Simple run
 

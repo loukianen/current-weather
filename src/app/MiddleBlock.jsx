@@ -9,12 +9,12 @@ const MiddleBlock = (props) => {
   const tempValue = `${degrees === 'Celsius' ? temp : transformDegrees(temp)}°`;
   const iconFileName = `img/${getIconFileName(iconId)}.png`;
   return (
-    <div className="middle-block">
-      <div className="item main-block">
+    <div className="info-area-item middle-block">
+      <div className="main-block">
         <img className="whether-picture" src={iconFileName} alt="sun" />
         <div className="temperture"><div>{tempValue}</div></div>
       </div>
-      <div className="item wether-description">
+      <div className="wether-description">
         {description}
       </div>
     </div>

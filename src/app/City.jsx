@@ -4,6 +4,11 @@ import { getWeatherData } from './utils';
 
 const City = (props) => {
   const { cityName, setCommonState } = props;
+  function isSmallWindow() {
+    // console.log(`ViewPort: ${window.innerWidth}`);
+    return window.innerWidth <= 375;
+  }
+  const cityNameClass = isSmallWindow() ? 'city-name-ss' : 'city-name';
 
   const handleChangeClick = () => {
     setCommonState({ mode: 'selection' });
@@ -19,7 +24,7 @@ const City = (props) => {
   return (
     <div className="city">
       <div id="cooseCity">
-        <div className="city-name">
+        <div className={cityNameClass}>
           {cityName}
         </div>
         <div className="city-buttons-block">

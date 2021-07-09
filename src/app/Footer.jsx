@@ -13,14 +13,14 @@ const Footer = (props) => {
   const renderData = [windSpeed, atmosphericPressure, humidity, probabilityOfPrecipitation];
 
   const renderWeatherBlocks = () => renderData.map(({ blockName, value }) => (
-    <div key={blockName} className="item">
+    <div key={blockName} className="footer-item">
       <div className="weather-block-name">{blockName}</div>
       <div className="weather-block-value">{value}</div>
     </div>
   ));
 
   return (
-    <div className="group footer">
+    <div className="info-area-item footer">
       {renderWeatherBlocks()}
     </div>
   );
