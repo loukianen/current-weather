@@ -17,8 +17,8 @@ const MeasureUnitsSwitch = (props) => {
         °
       </div>
       <div className="degrees-buttons-block">
-        <button className="c-button item" type="button" onClick={handleClick} disabled={isCelsius}>C</button>
-        <button className="f-button item" type="button" onClick={handleClick} disabled={!isCelsius}>F</button>
+        <button className="c-button item font18" type="button" onClick={handleClick} disabled={isCelsius}>C</button>
+        <button className="f-button item font18" type="button" onClick={handleClick} disabled={!isCelsius}>F</button>
       </div>
     </div>
   );

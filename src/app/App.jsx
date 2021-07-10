@@ -13,6 +13,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    this.checkScreenSize();
     const lastCoords = getSavedCoords();
     if (isCoordsValid(lastCoords)) {
       getWeatherData(lastCoords, this.setCommonState());
@@ -32,17 +33,43 @@ class App extends React.Component {
     });
   }
 
+  checkScreenSize() {
+    if (window.innerWidth <= 400) {
+      this.setState({ screenSize: 'small' });
+    }
+  }
+
   render() {
     const {
       mode, degrees, name, temp, icon, pressure, humidity, speed, direction, pop, description,
+      screenSize,
     } = this.state;
     return (
       <div className="desktop">
         <div className="rectangle">
           <div className="info-area">
-            <Header mode={mode} name={name} deg={degrees} setCommonState={this.setCommonState()} />
-            <MiddleBlock iconId={icon} temp={temp} degrees={degrees} description={description} />
-            <Footer pres={pressure} hum={humidity} speed={speed} direction={direction} pop={pop} />
+            <Header
+              mode={mode}
+              name={name}
+              deg={degrees}
+              screenSize={screenSize}
+              setCommonState={this.setCommonState()}
+            />
+            <MiddleBlock
+              iconId={icon}
+              temp={temp}
+              degrees={degrees}
+              description={description}
+              screenSize={screenSize}
+            />
+            <Footer
+              pres={pressure}
+              hum={humidity}
+              speed={speed}
+              direction={direction}
+              pop={pop}
+              screenSize={screenSize}
+            />
           </div>
         </div>
       </div>

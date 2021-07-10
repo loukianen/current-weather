@@ -10,7 +10,7 @@ export const apiConfig = {
 export const initState = {
   degrees: 'Celsius', // 'Fahrenheit'
   mode: 'show', // 'selection'
-  name: 'Москва',
+  name: 'Выберите город',
   temp: 18,
   icon: '01d',
   pressure: 0,
@@ -19,6 +19,7 @@ export const initState = {
   direction: '',
   pop: 0,
   description: 'Загрузка данных. Пожалуйста, подождите',
+  screenSize: 'desktop',
 };
 
 export const getVariants = ({ city, cityIds }, str) => {

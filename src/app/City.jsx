@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { getWeatherData } from './utils';
+import MeasureUnitsSwitch from './MeasureUnitsSwitch.jsx';
 
 const City = (props) => {
-  const { cityName, setCommonState } = props;
-  function isSmallWindow() {
-    // console.log(`ViewPort: ${window.innerWidth}`);
-    return window.innerWidth <= 375;
-  }
-  const cityNameClass = isSmallWindow() ? 'city-name-ss' : 'city-name';
+  const {
+    cityName, setCommonState, screenSize, deg,
+  } = props;
+  const cityNameClass = screenSize === 'small' ? 'font30' : 'font50';
+  const buttonClass = screenSize === 'small' ? 'city-button font15' : 'city-button font18';
 
   const handleChangeClick = () => {
     setCommonState({ mode: 'selection' });
@@ -24,12 +24,15 @@ const City = (props) => {
   return (
     <div className="city">
       <div id="cooseCity">
-        <div className={cityNameClass}>
-          {cityName}
+        <div className="first-city-block">
+          <div className={cityNameClass}>
+            {cityName}
+          </div>
+          <MeasureUnitsSwitch degrees={deg} setCommonState={setCommonState} />
         </div>
         <div className="city-buttons-block">
-          <button className="city-button" type="button" onClick={handleChangeClick}>Сменить город</button>
-          <button className="city-button" type="button" onClick={handleGeoClick}>
+          <button className={buttonClass} type="button" onClick={handleChangeClick}>Сменить город</button>
+          <button className={buttonClass} type="button" onClick={handleGeoClick}>
             <img className="arrow" src="img/location.png" alt="" />
             Мое местоположение
           </button>
@@ -42,6 +45,8 @@ const City = (props) => {
 City.propTypes = {
   setCommonState: PropTypes.func.isRequired,
   cityName: PropTypes.string.isRequired,
+  screenSize: PropTypes.string.isRequired,
+  deg: PropTypes.string.isRequired,
 };
 
 export default City;

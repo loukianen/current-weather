@@ -7,7 +7,7 @@ const { ids: cityIds, city } = JSON.parse(cityDataJson);
 
 const CitySelection = (props) => {
   const { setCommonState } = props;
-  const [text, setText] = useState();
+  const [text, setText] = useState('');
   const [variants, setVariants] = useState([]);
   const [chosenCityId, setChosenCityId] = useState(null);
 
@@ -21,7 +21,9 @@ const CitySelection = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (chosenCityId === null) {
+    if (text.length === 0) {
+      setCommonState({ mode: 'show' });
+    } else if (chosenCityId === null) {
       getWeatherData(text, setCommonState);
     } else {
       const { latitude, longitude } = city[chosenCityId];
@@ -44,13 +46,19 @@ const CitySelection = (props) => {
     ));
   };
 
+  const rectangleEscHandle = (e) => {
+    if (e.key === 'Escape') {
+      setCommonState({ mode: 'show' });
+    }
+  };
+
   const optionsSize = variants.length < 7 ? variants.length + 1 : 7 + 1;
   /* eslint-disable react/no-unknown-property */
   return (
     <div className="city-select-container">
       <form className="form-city-name" onSubmit={handleSubmit}>
         <div className="input-city-name-block">
-          <input className="input-city-name" name="city" value={text} autocomplete="off" onChange={handleChangeText} />
+          <input className="input-city-name" name="city" value={text} autocomplete="off" autofocus="true" onChange={handleChangeText} onKeyDown={rectangleEscHandle} />
           <button className="city-name-submit-button" type="submit">OK</button>
         </div>
       </form>
