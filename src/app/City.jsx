@@ -33,8 +33,10 @@ const City = (props) => {
         <div className="city-buttons-block">
           <button className={buttonClass} type="button" onClick={handleChangeClick}>Сменить город</button>
           <button className={buttonClass} type="button" onClick={handleGeoClick}>
-            <img className="arrow" src="img/location.png" alt="" />
-            Мое местоположение
+            <div className="arrow-wrap">
+              <img className="arrow" src="img/location.png" alt="" />
+              Мое местоположение
+            </div>
           </button>
         </div>
       </div>

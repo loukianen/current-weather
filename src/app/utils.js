@@ -10,15 +10,15 @@ export const apiConfig = {
 export const initState = {
   degrees: 'Celsius', // 'Fahrenheit'
   mode: 'show', // 'selection'
-  name: 'Выберите город',
-  temp: 18,
+  name: 'Омск',
+  temp: 19,
   icon: '01d',
-  pressure: 0,
-  humidity: 0,
-  speed: 0,
-  direction: '',
-  pop: 0,
-  description: 'Загрузка данных. Пожалуйста, подождите',
+  pressure: 752,
+  humidity: 60,
+  speed: 5,
+  direction: 'западный',
+  pop: 10,
+  description: 'Преимущественно солнечно',
   screenSize: 'desktop',
 };
 

@@ -14,12 +14,12 @@ class App extends React.Component {
 
   componentDidMount() {
     this.checkScreenSize();
-    const lastCoords = getSavedCoords();
+    /*const lastCoords = getSavedCoords();
     if (isCoordsValid(lastCoords)) {
       getWeatherData(lastCoords, this.setCommonState());
     } else {
       this.getWeatherDataWithGeoposition();
-    }
+    }*/
   }
 
   setCommonState() {

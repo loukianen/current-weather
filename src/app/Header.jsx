@@ -11,7 +11,7 @@ const Header = (props) => {
     <div className="info-area-item">
       {mode === 'show'
         ? <City cityName={name} setCommonState={setCommonState} screenSize={screenSize} deg={deg} />
-        : <CitySelection setCommonState={setCommonState} />}
+        : <CitySelection setCommonState={setCommonState} screenSize={screenSize} />}
     </div>
   );
 };
