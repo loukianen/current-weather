@@ -283,14 +283,15 @@ outline: none;
 
 .var-button {
   border: none;
-  list-style: none;
   color: black;
+  padding-left: 5px;
   background-color: white;
   text-align: left;
-  cursor: pointer;
+  overflow: hidden;
 }
 
 .var-button:hover, .var-button:focus {
+  outline: none;
   color:white;
   box-shadow: none;
   background-color: #1086FF;

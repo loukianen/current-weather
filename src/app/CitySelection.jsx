@@ -40,33 +40,55 @@ const CitySelection = (props) => {
   };
 
   const handlePressEnter = ({ id, cityName }) => (e) => {
+    const { target } = e;
+    if (e.key === 'Escape') {
+      setCommonState({ mode: 'show' });
+    }
     if (e.key === 'Enter') {
       setChosenCityId(id);
       setText(cityName);
-      const inputElement = document.querySelector('input');
-      inputElement.focus();
+    }
+    if (e.key === 'ArrowDown') {
+      if (target.nextSibling) {
+        target.nextSibling.focus();
+      }
+    }
+    if (e.key === 'ArrowUp') {
+      if (target.previousSibling) {
+        target.previousSibling.focus();
+      } else {
+        const inputElement = document.querySelector('input');
+        inputElement.focus();
+      }
     }
   };
 
-  const containerClass = screenSize === 'small' ? 'city-select-container-sm' : 'city-select-container';
-  const inputBlockClass = screenSize === 'small' ? 'input-city-name-block br-4' : 'input-city-name-block br-8';
-  const inputClass = screenSize === 'small' ? 'input-city-name height-53 font15' : 'input-city-name height-97 font30';
-  const submitButtonClass = screenSize === 'small' ? 'city-name-submit-button width-22 font15' : 'city-name-submit-button width-55 font30';
-  const liClass = screenSize === 'small' ? 'var-button height-22 font35' : 'var-button height-53 font30';
+  const isScreenSmall = screenSize === 'small';
+  const containerClass = isScreenSmall ? 'city-select-container-sm' : 'city-select-container';
+  const inputBlockClass = isScreenSmall ? 'input-city-name-block br-4' : 'input-city-name-block br-8';
+  const inputClass = isScreenSmall ? 'input-city-name height-53 font15' : 'input-city-name height-97 font30';
+  const submitButtonClass = isScreenSmall ? 'city-name-submit-button width-22 font15' : 'city-name-submit-button width-55 font30';
+  const liClass = isScreenSmall ? 'var-button height-22 font22' : 'var-button height-53 font25';
 
   const renderVariants = () => {
     if (variants.length <= 0) {
       return null;
     }
-    const selctedVariants = variants.length > 7 ? variants.slice(0, 6) : variants;
+    const selctedVariants = variants.length > 7 ? variants.slice(0, 7) : variants;
     return selctedVariants.map(({ id, cityName }) => (
-      <div key={id} name="li" className={liClass} onClick={choseCity({ id, cityName })} onKeyDown={handlePressEnter({ id, cityName })}>{cityName}</div>
+      <div key={id} name="li" className={liClass} tabIndex="-1" onClick={choseCity({ id, cityName })} onKeyDown={handlePressEnter({ id, cityName })}>
+        <div>{cityName}</div>
+      </div>
     ));
   };
 
   const rectangleEscHandle = (e) => {
     if (e.key === 'Escape') {
       setCommonState({ mode: 'show' });
+    }
+    if (e.key === 'ArrowDown') {
+      const firstVarElement = document.querySelector('div[name="li"');
+      firstVarElement.focus();
     }
   };
 
@@ -80,8 +102,8 @@ const CitySelection = (props) => {
         </div>
       </form>
       <div className="variants">
-        <div className="variants-wraper">
-          {renderVariants()}
+        <div className="variants-wraper" hidden={variants.length < 1}>
+            {renderVariants()}
         </div>
       </div>
     </div>
