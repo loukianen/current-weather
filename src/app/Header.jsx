@@ -11,7 +11,7 @@ const Header = (props) => {
     <div className="info-area-item">
       {mode === 'show'
         ? <City cityName={name} setCommonState={setCommonState} screenSize={screenSize} deg={deg} />
-        : <CitySelection setCommonState={setCommonState} screenSize={screenSize} />}
+        : <CitySelection setCommonState={setCommonState} screenSize={screenSize} deg={deg} />}
     </div>
   );
 };
@@ -23,5 +23,5 @@ Header.propTypes = {
   deg: PropTypes.string.isRequired,
   screenSize: PropTypes.string.isRequired,
 };
-//  <MeasureUnitsSwitch degrees={deg} setCommonState={setCommonState} />
+
 export default Header;

@@ -51,6 +51,7 @@ outline: none;
 .font30 {
   font-size: 30px;
   line-height: 36px;
+  font-weight: 400;
 }
 
 .font25 {
@@ -192,10 +193,6 @@ outline: none;
   opacity: 0.6;
 }
 
-.arrow-wrap {
-
-}
-
 .arrow {
   left: 2px;
   bottom: 0px;
@@ -208,7 +205,13 @@ outline: none;
   z-index: 2;
 }
 
+.container-wrap {
+  display: flex;
+  justify-content: space-between;
+}
+
 .city-select-container {
+  margin-left: -3px;
   width: 579px;
 }
 
@@ -226,6 +229,7 @@ outline: none;
 
 .input-city-name-block {
   display: flex;
+  margin-top: 6px;
   background: #FFFFFF;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
 }
@@ -251,7 +255,8 @@ outline: none;
 }
 
 .input-city-name {
-  margin-left: 15px;
+  margin-top: 2px;
+  margin-left: 30px;
   flex-grow: 1;
   border: none;
 
@@ -267,7 +272,8 @@ outline: none;
 }
 
 .city-name-submit-button {
-  margin-right: 15px;
+  margin-top: 4px;
+  margin-right: 27px;
   flex-grow: 0;
   border: none;
   color: #1086FF;

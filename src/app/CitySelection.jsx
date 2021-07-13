@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { getWeatherData, getVariants } from './utils';
 import cityDataJson from './cityData';
+import MeasureUnitsSwitch from './MeasureUnitsSwitch.jsx';
 
 const { ids: cityIds, city } = JSON.parse(cityDataJson);
 
 const CitySelection = (props) => {
-  const { setCommonState, screenSize } = props;
+  const { setCommonState, screenSize, deg } = props;
   const [text, setText] = useState('');
   const [variants, setVariants] = useState([]);
   const [chosenCityId, setChosenCityId] = useState(null);
@@ -41,7 +42,6 @@ const CitySelection = (props) => {
   };
 
   const handlePressEnter = ({ id, cityName }) => (e) => {
-    console.log(e.key);
     const { target } = e;
     if (e.key === 'Escape') {
       setCommonState({ mode: 'show' });
@@ -96,18 +96,21 @@ const CitySelection = (props) => {
 
   /* eslint-disable jsx-a11y/no-autofocus */
   return (
-    <div className={containerClass}>
-      <form className="form-city-name" onSubmit={handleSubmit}>
-        <div className={inputBlockClass}>
-          <input className={inputClass} name="city" value={text} autoComplete="off" autoFocus="true" onChange={handleChangeText} onKeyDown={rectangleEscHandle} />
-          <button className={submitButtonClass} type="submit">OK</button>
-        </div>
-      </form>
-      <div className="variants">
-        <div className="variants-wraper" hidden={variants.length < 1}>
-          {renderVariants()}
+    <div className="container-wrap">
+      <div className={containerClass}>
+        <form className="form-city-name" onSubmit={handleSubmit}>
+          <div className={inputBlockClass}>
+            <input className={inputClass} name="city" value={text} autoComplete="off" autoFocus="true" onChange={handleChangeText} onKeyDown={rectangleEscHandle} />
+            <button className={submitButtonClass} type="submit">OK</button>
+          </div>
+        </form>
+        <div className="variants">
+          <div className="variants-wraper" hidden={variants.length < 1}>
+            {renderVariants()}
+          </div>
         </div>
       </div>
+      {screenSize === 'desktop' ? <MeasureUnitsSwitch degrees={deg} setCommonState={setCommonState} /> : null}
     </div>
   );
 };
@@ -115,6 +118,7 @@ const CitySelection = (props) => {
 CitySelection.propTypes = {
   setCommonState: PropTypes.func.isRequired,
   screenSize: PropTypes.string.isRequired,
+  deg: PropTypes.string.isRequired,
 };
 
 export default CitySelection;
