@@ -10,11 +10,13 @@ const City = (props) => {
   const cityNameClass = screenSize === 'small' ? 'font30' : 'font50';
   const buttonClass = screenSize === 'small' ? 'city-button font15' : 'city-button font18';
 
-  const handleChangeClick = () => {
+  const handleChangeClick = (e) => {
+    e.stopPropagation();
     setCommonState({ mode: 'selection' });
   };
 
-  const handleGeoClick = () => {
+  const handleGeoClick = (e) => {
+    e.stopPropagation();
     navigator.geolocation.getCurrentPosition(({ coords }) => {
       const { latitude, longitude } = coords;
       getWeatherData({ lat: latitude, lon: longitude }, setCommonState);
@@ -32,12 +34,10 @@ const City = (props) => {
         </div>
         <div className="city-buttons-block">
           <button className={buttonClass} type="button" onClick={handleChangeClick}>Сменить город</button>
-          <button className={buttonClass} type="button" onClick={handleGeoClick}>
-            <div className="arrow-wrap">
-              <img className="arrow" src="img/location.png" alt="" />
-              Мое местоположение
-            </div>
-          </button>
+          <div className="arrow-wrap">
+            <img className="arrow" src="img/location.png" alt="" />
+          </div>
+          <button className={buttonClass} type="button" onClick={handleGeoClick}>Мое местоположение</button>
         </div>
       </div>
     </div>

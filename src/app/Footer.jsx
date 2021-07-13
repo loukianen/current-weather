@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+const getBlockClass = (blockNumber) => `block-${blockNumber}`;
+
 const Footer = (props) => {
   const {
     pres, hum, speed, direction, pop, screenSize,
@@ -16,10 +18,12 @@ const Footer = (props) => {
 
   const renderData = [windSpeed, atmosphericPressure, humidity, probabilityOfPrecipitation];
 
-  const renderWeatherBlocks = () => renderData.map(({ blockName, value }) => (
+  const renderWeatherBlocks = () => renderData.map(({ blockName, value }, i) => (
     <div key={blockName} className={itemClass}>
-      <div className={blockNameClass}>{blockName}</div>
-      <div className={blockValueClass}>{value}</div>
+      <div className={getBlockClass(i + 1)}>
+        <div className={blockNameClass}>{blockName}</div>
+        <div className={blockValueClass}>{value}</div>
+      </div>
     </div>
   ));
 

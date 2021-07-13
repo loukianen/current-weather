@@ -4,21 +4,30 @@ import PropTypes from 'prop-types';
 const MeasureUnitsSwitch = (props) => {
   const { degrees, setCommonState } = props;
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.stopPropagation();
     const newDegrees = degrees === 'Celsius' ? 'Fahrenheit' : 'Celsius';
     setCommonState({ degrees: newDegrees });
   };
 
   const isCelsius = degrees === 'Celsius';
+  const cClass = isCelsius ? 'active-button c-button item font18' : 'not-active-button c-button item font18';
+  const fClass = isCelsius ? 'not-active-button f-button item font18' : 'active-button f-button item font18';
+  const letterC = isCelsius ? 'active-letter' : null;
+  const letterF = isCelsius ? null : 'active-letter';
 
   return (
     <div className="measure-units-switch">
-      <div className="degrees-simbol">
+      <div className="degrees-simbol font18">
         °
       </div>
       <div className="degrees-buttons-block">
-        <button className="c-button item font18" type="button" onClick={handleClick} disabled={isCelsius}>C</button>
-        <button className="f-button item font18" type="button" onClick={handleClick} disabled={!isCelsius}>F</button>
+        <button className={cClass} type="button" onClick={handleClick} disabled={isCelsius}>
+          <div className={letterC}>C</div>
+        </button>
+        <button className={fClass} type="button" onClick={handleClick} disabled={!isCelsius}>
+          <div className={letterF}>F</div>
+        </button>
       </div>
     </div>
   );

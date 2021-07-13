@@ -32,7 +32,8 @@ const CitySelection = (props) => {
     setCommonState({ mode: 'show' });
   };
 
-  const choseCity = ({ id, cityName }) => () => {
+  const choseCity = ({ id, cityName }) => (e) => {
+    e.stopPropagation();
     setChosenCityId(id);
     setText(cityName);
     const inputElement = document.querySelector('input');
@@ -40,6 +41,7 @@ const CitySelection = (props) => {
   };
 
   const handlePressEnter = ({ id, cityName }) => (e) => {
+    console.log(e.key);
     const { target } = e;
     if (e.key === 'Escape') {
       setCommonState({ mode: 'show' });
@@ -103,7 +105,7 @@ const CitySelection = (props) => {
       </form>
       <div className="variants">
         <div className="variants-wraper" hidden={variants.length < 1}>
-            {renderVariants()}
+          {renderVariants()}
         </div>
       </div>
     </div>
