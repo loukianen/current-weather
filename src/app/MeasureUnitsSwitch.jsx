@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const MeasureUnitsSwitch = (props) => {
-  const { degrees, setCommonState } = props;
+  const { degrees, setCommonState, screenSize } = props;
 
   const handleClick = (e) => {
     e.stopPropagation();
@@ -15,9 +15,10 @@ const MeasureUnitsSwitch = (props) => {
   const fClass = isCelsius ? 'not-active-button f-button item font18' : 'active-button f-button item font18';
   const letterC = isCelsius ? 'active-letter' : null;
   const letterF = isCelsius ? null : 'active-letter';
+  const switchClass = screenSize === 'small' ? 'measure-units-switch-sm' : 'measure-units-switch';
 
   return (
-    <div className="measure-units-switch">
+    <div className={switchClass}>
       <div className="degrees-simbol font18">
         °
       </div>
@@ -36,6 +37,7 @@ const MeasureUnitsSwitch = (props) => {
 MeasureUnitsSwitch.propTypes = {
   setCommonState: PropTypes.func.isRequired,
   degrees: PropTypes.string.isRequired,
+  screenSize: PropTypes.string.isRequired,
 };
 
 export default MeasureUnitsSwitch;

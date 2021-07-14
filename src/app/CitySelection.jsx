@@ -68,8 +68,8 @@ const CitySelection = (props) => {
   const isScreenSmall = screenSize === 'small';
   const containerClass = isScreenSmall ? 'city-select-container-sm' : 'city-select-container';
   const inputBlockClass = isScreenSmall ? 'input-city-name-block br-4' : 'input-city-name-block br-8';
-  const inputClass = isScreenSmall ? 'input-city-name height-53 font15' : 'input-city-name height-97 font30';
-  const submitButtonClass = isScreenSmall ? 'city-name-submit-button width-22 font15' : 'city-name-submit-button width-55 font30';
+  const inputClass = isScreenSmall ? 'input-city-name-sm height-53 font15' : 'input-city-name height-97 font30';
+  const submitButtonClass = isScreenSmall ? 'city-name-submit-button-sm width-22 font15-400' : 'city-name-submit-button width-55 font30';
   const liClass = isScreenSmall ? 'var-button height-22 font22' : 'var-button height-53 font25';
 
   const renderVariants = () => {

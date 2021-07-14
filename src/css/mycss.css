@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Lato'; 
+  src: local('Lato'),
+    url(../fonts/Lato-Bold.ttf);
+  font-weight: 700;
+  font-style: bold;
+}
 
 @font-face {
   font-family: 'Lato'; 
@@ -12,7 +19,7 @@
   src: local('Lato'),
     url(../fonts/Lato-Light.ttf);
   font-weight: 300;
-  font-style: light;
+  font-style: 'light';
 }
 
 @font-face {
@@ -21,6 +28,14 @@
     url(../fonts/Lato-Thin.ttf);
   font-weight: 200;
   font-style: thin;
+}
+
+@font-face {
+  font-family: 'Lato'; 
+  src: local('Lato'),
+    url(../fonts/Lato-Hairline.ttf);
+  font-weight: 100;
+  font-style: 'hairline';
 }
 
 input:active,
@@ -32,6 +47,14 @@ select:focus {
 outline: none;
 }
 
+button {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+}
+
 .font180 {
   font-size: 180px;
   line-height: 216px;
@@ -40,6 +63,7 @@ outline: none;
 .font90 {
   font-size: 90px;
   line-height: 108px;
+  font-weight: 300;
 }
 
 .font50 {
@@ -62,13 +86,25 @@ outline: none;
 .font18 {
   font-size: 19px;
   line-height: 22.6px;
-  font-weight: 200;
+  font-weight: 300;
+}
+
+.font18-700 {
+  font-size: 18px;
+  line-height: 21.6px;
+  font-weight: 700;
 }
 
 .font15 {
   font-size: 15px;
   line-height: 18px;
-  font-weight: 200;
+  font-weight: 300;
+}
+
+.font15-400 {
+  font-size: 15px;
+  line-height: 18px;
+  font-weight: 400;
 }
 
 .desktop {
@@ -89,8 +125,6 @@ outline: none;
   box-sizing: border-box;
 
   font-family: 'Lato';
-  font-style: normal;
-  font-weight: normal;
 
   color: #FFFFFF;
 }
@@ -119,12 +153,22 @@ outline: none;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-top: 7.5px;
 }
 
 .measure-units-switch {
   display: flex;
   padding-top: -1px;
-  padding-right: 5px;
+  padding-right: -0px;
+  width: 77px;
+  margin-top: 8px;
+  margin-right: -25px;
+}
+
+.measure-units-switch-sm {
+  display: flex;
+  padding-top: -1px;
+  padding-right: 14px;
   width: 77px;
   margin-top: 8px;
   margin-right: 11px;
@@ -182,9 +226,24 @@ outline: none;
   display: flex;
 }
 
-.city-button {
+.city-buttons-block-sm {
+  margin-top: 10px;
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.city-button {
   margin-right: 20px;
+  border: none;
+  color: white;
+  background-color: transparent;
+  align-self: center;
+  mix-blend-mode: normal;
+  opacity: 0.6;
+}
+
+.city-button-sm {
   border: none;
   color: white;
   background-color: transparent;
@@ -196,7 +255,7 @@ outline: none;
 .arrow {
   left: 2px;
   bottom: 0px;
-  margin-left: 1px;
+  margin-left: 30px;
   width: 30px;
   height: 30px;
 }
@@ -216,7 +275,11 @@ outline: none;
 }
 
 .city-select-container-sm {
-  width: 100%;
+  position: absolute;
+  top: 27px;
+  left: 28px;
+  width: 332px;
+  height: 53px;
 }
 
 .br-8 {
@@ -263,6 +326,15 @@ outline: none;
   color: #000000;
 }
 
+.input-city-name-sm {
+  margin-top: 3px;
+  margin-left: 19px;
+  flex-grow: 1;
+  border: none;
+
+  color: #000000;
+}
+
 .select-city-name {
   font-size: 20px;
   line-height: 36px;
@@ -274,6 +346,15 @@ outline: none;
 .city-name-submit-button {
   margin-top: 4px;
   margin-right: 27px;
+  flex-grow: 0;
+  border: none;
+  color: #1086FF;
+  background-color: transparent;
+}
+
+.city-name-submit-button-sm {
+  margin-top: 4px;
+  margin-right: 15px;
   flex-grow: 0;
   border: none;
   color: #1086FF;
@@ -328,17 +409,33 @@ outline: none;
   margin-bottom: 52px;
 }
 
-.middle-block > .item {
-  text-align: center;
-
+.middle-block-sm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 10px;
 }
 
 .main-block {
+  margin-left: 23px;
   display: flex;
   flex-grow: 2;
   padding-bottom: 30px;
   align-items: center;
   justify-content: center;
+}
+
+.main-block-sm {
+  margin-left: 23px;
+  display: flex;
+  flex-grow: 2;
+  padding-bottom: 0px;
+  align-items: center;
+  justify-content: center;
+}
+
+.temp-sm {
+  padding-left: 10px;
 }
 
 .size208 {
@@ -347,13 +444,13 @@ outline: none;
 }
 
 .size100 {
-  max-width: 100px;
-  max-height: 100px;
+  max-width: 113px;
+  max-height: 113px;
 }
 
 .whether-picture {
   align-self: center;
-  margin-right: -8px;
+  padding-bottom: 5px;
 }
 
 .wether-desc {
@@ -363,11 +460,32 @@ outline: none;
   margin-left: -45px;
 }
 
+.wether-desc-sm {
+  min-height: 70px;
+  text-align: center;
+  padding-top: 0px;
+}
+
 .footer {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-left: 1px;
+  margin-top: 1px;
+}
+
+.footer-wrap-sm {
+  display: flex;
+  flex-direction: row;
+}
+
+.footer-sm {
+  min-height: 150px;
+  align-self: flex-end;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-bottom: 5px;
+  padding-left: 1px;
 }
 
 .footer-item-4 {
@@ -387,6 +505,13 @@ outline: none;
   margin-bottom: 13px;
 }
 
+.weather-block-name-sm {
+  mix-blend-mode: normal;
+  opacity: 0.6;
+  padding-bottom: 3px;
+  padding-left: 1px;
+}
+
 .block-2 {
   padding-left: 15px;
 }
@@ -398,6 +523,27 @@ outline: none;
 .block-4 {
   padding-left: 22.5px;
 }
+
+.block-1-sm {
+  margin-bottom: 3px;
+  margin-left: -2px;
+  padding-left: 4px;
+}
+
+.block-2-sm {
+  margin-bottom: 3px;
+  margin-left: -2px;
+  padding-left: 15px;
+}
+
+.block-3-sm {
+  padding-left: 4px;
+}
+
+.block-4-sm {
+  padding-left: 15px;
+}
+
 /*
 @media (max-width: 1365px) {
   .rectangle {
@@ -412,17 +558,17 @@ outline: none;
   }
 }
 */
-@media (max-width: 375px) {
+@media (max-width: 400px) {
   .rectangle {
-    height: 667px;
-    width: 100%;
+    height: 669px;
+    max-width: 378px;
   }
 
   .info-area {
     height: 93%;
-    width: 84.8%;
+    width: 85.83%;
     margin-left: 5.07%;
-    margin-right: 10.13%;
+    margin-right: 9.1%;
     margin-top: 2.85%;
     margin-bottom: 11.2%;
   }

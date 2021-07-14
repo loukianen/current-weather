@@ -36,6 +36,7 @@ class App extends React.Component {
   checkScreenSize() {
     if (window.innerWidth <= 400) {
       this.setState({ screenSize: 'small' });
+      this.setState({ temp: 14, icon: '09d', description: 'Дождь' });
     }
   }
 

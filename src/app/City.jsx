@@ -8,7 +8,8 @@ const City = (props) => {
     cityName, setCommonState, screenSize, deg,
   } = props;
   const cityNameClass = screenSize === 'small' ? 'font30' : 'font50';
-  const buttonClass = screenSize === 'small' ? 'city-button font15' : 'city-button font18';
+  const buttonClass = screenSize === 'small' ? 'font15 city-button-sm' : 'font18 city-button';
+  const buttonBlockClass = screenSize === 'small' ? 'city-buttons-block-sm' : 'city-buttons-block';
 
   const handleChangeClick = (e) => {
     e.stopPropagation();
@@ -30,9 +31,9 @@ const City = (props) => {
           <div className={cityNameClass}>
             {cityName}
           </div>
-          <MeasureUnitsSwitch degrees={deg} setCommonState={setCommonState} />
+          <MeasureUnitsSwitch degrees={deg} setCommonState={setCommonState} screenSize={screenSize} />
         </div>
-        <div className="city-buttons-block">
+        <div className={buttonBlockClass}>
           <button className={buttonClass} type="button" onClick={handleChangeClick}>Сменить город</button>
           <div className="arrow-wrap">
             <img className="arrow" src="img/location.png" alt="" />

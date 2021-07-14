@@ -9,13 +9,16 @@ const MiddleBlock = (props) => {
   const tempValue = `${degrees === 'Celsius' ? temp : transformDegrees(temp)}°`;
   const iconFileName = `img/${getIconFileName(iconId)}.png`;
   const iconClass = screenSize === 'small' ? 'whether-picture size100' : 'whether-picture size208';
-  const tempClass = screenSize === 'small' ? 'font90' : 'font180';
-  const descriptionClass = screenSize === 'small' ? 'wether-desc font18' : 'wether-desc font25';
+  const tempClass = screenSize === 'small' ? 'font90 temp-sm' : 'font180';
+  const descriptionClass = screenSize === 'small' ? 'wether-desc-sm font18' : 'wether-desc font25';
+  const middleBlockClass = screenSize === 'small' ? 'info-area-item middle-block-sm' : 'info-area-item middle-block';
+  const mainBlockClass = screenSize === 'small' ? 'main-block-sm' : 'main-block';
+
   return (
-    <div className="info-area-item middle-block">
-      <div className="main-block">
+    <div className={middleBlockClass}>
+      <div className={mainBlockClass}>
         <img className={iconClass} src={iconFileName} alt="sun" />
-        <div className={tempClass}><div>{tempValue}</div></div>
+        <div className={tempClass}>{tempValue}</div>
       </div>
       <div className={descriptionClass}>
         {description}
