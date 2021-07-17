@@ -7,18 +7,24 @@ export const apiConfig = {
   appId: '97d19b5fe75467c34c18e4455586aa9d',
 };
 
+export const getSavedStartMode = () => window.localStorage.getItem('currentWeatherMode');
+export const saveStartMode = (mode) => window.localStorage.setItem('currentWeatherMode', mode);
+
 export const initState = {
-  degrees: 'Celsius', // 'Fahrenheit'
-  mode: 'show', // 'selection'
-  name: 'Омск',
-  temp: 19,
-  icon: '01d',
-  pressure: 752,
-  humidity: 60,
-  speed: 5,
-  direction: 'западный',
-  pop: 10,
-  description: 'Преимущественно солнечно',
+  degreesType: 'Celsius', // 'Fahrenheit'
+  appMode: 'show', // 'selection'
+  startMode: 'notSet',
+  weatherData: {
+    name: 'Выберите город',
+    temp: 19,
+    icon: '01d',
+    pressure: 752,
+    humidity: 60,
+    speed: 5,
+    direction: 'западный',
+    pop: 10,
+    description: 'Данные не загружены',
+  },
   screenSize: 'desktop',
 };
 
@@ -113,7 +119,7 @@ export const saveCoords = (coords) => {
 
 export const getSavedCoords = () => {
   const savedData = window.localStorage.getItem('currentWeatherCoords');
-  return JSON.parse(savedData);
+  return savedData !== null ? JSON.parse(savedData) : null;
 };
 
 const getQuery = (id, type, queryData) => {
