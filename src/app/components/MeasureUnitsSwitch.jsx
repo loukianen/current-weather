@@ -17,13 +17,17 @@ const getClassNames = (screenSize, degreesType) => {
     'measure-units-switch-sm': isScreenSmall,
     'measure-units-switch': !isScreenSmall,
   });
+  const buttonBlockClass = cn({
+    'degrees-buttons-block-sm': isScreenSmall,
+    'degrees-buttons-block': !isScreenSmall,
+  });
   const blockClassC = getBlockClass('c', isCelsius);
   const blockClassF = getBlockClass('f', isCelsius);
   const letterClassC = isCelsius ? 'active-letter' : null;
   const letterClassF = isCelsius ? null : 'active-letter';
 
   return {
-    switchClass, blockClassC, blockClassF, letterClassC, letterClassF,
+    switchClass, buttonBlockClass, blockClassC, blockClassF, letterClassC, letterClassF,
   };
 };
 
@@ -45,13 +49,13 @@ const MeasureUnitsSwitch = (props) => {
     setDegreesType(newDegrees);
   };
   const {
-    switchClass, blockClassC, blockClassF, letterClassC, letterClassF,
+    switchClass, buttonBlockClass, blockClassC, blockClassF, letterClassC, letterClassF,
   } = getClassNames(screenSize, degreesType);
 
   return (
     <div className={switchClass}>
       <div className="degrees-simbol font18">°</div>
-      <div className="degrees-buttons-block">
+      <div className={buttonBlockClass}>
         <button className={blockClassC} type="button" onClick={handleClick} disabled={isCelsius}>
           <div className={letterClassC}>C</div>
         </button>

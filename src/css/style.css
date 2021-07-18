@@ -148,7 +148,7 @@ button {
 }
 
 .modal-button {
-  width: 150px;
+  width: 180px;
   height: 30px;
   color:white;
   background-color: #498CEC;
@@ -193,7 +193,14 @@ button {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 7.5px;
+  margin-top: 1px;
+}
+
+.first-city-block-sm {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 11px;
 }
 
 .measure-units-switch {
@@ -202,12 +209,12 @@ button {
   padding-right: -0px;
   width: 77px;
   margin-top: 8px;
-  margin-right: -25px;
+  margin-right: 15px;
 }
 
 .measure-units-switch-sm {
   display: flex;
-  padding-top: -1px;
+  padding-top: -5px;
   padding-right: 14px;
   width: 77px;
   margin-top: 8px;
@@ -221,6 +228,18 @@ button {
   opacity: 0.4;
 }
 
+.degrees-buttons-block-sm {
+  margin-top: -2px;
+  margin-left: 5.5px;
+  display: flex;
+  justify-content: center;
+  width: 77px;
+  height: 29px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
 .degrees-buttons-block {
   margin-left: 5.5px;
   display: flex;
@@ -232,7 +251,7 @@ button {
   border-radius: 8px;
 }
 
-.degrees-buttons-block > .item {
+.degrees-buttons-block > .item, .degrees-buttons-block-sm > .item {
   border: none;
   width: 38.5px;
   color: rgba(255, 255, 255, 0.4);
@@ -261,13 +280,13 @@ button {
 }
 
 .city-buttons-block {
-  margin-top: 6px;
-  margin-left: -5px;
+  margin-top: 7px;
+  margin-left: 1px;
   display: flex;
 }
 
 .city-buttons-block-sm {
-  margin-top: 10px;
+  margin-top: 9px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -293,6 +312,14 @@ button {
 }
 
 .arrow {
+  margin-right: 4px;
+  margin-bottom: -4px;
+  margin-left: 7px;
+  width: 30px;
+  height: 30px;
+}
+
+.arrow-sm {
   left: 2px;
   bottom: 0px;
   margin-left: 30px;
@@ -429,6 +456,7 @@ button {
 .var-button {
   border: none;
   color: black;
+  padding-top: 10px;
   padding-left: 5px;
   background-color: white;
   text-align: left;
@@ -457,7 +485,7 @@ button {
 }
 
 .main-block {
-  margin-left: 23px;
+  margin-left: 3px;
   display: flex;
   flex-grow: 2;
   padding-bottom: 30px;
@@ -472,6 +500,10 @@ button {
   padding-bottom: 0px;
   align-items: center;
   justify-content: center;
+}
+
+.temp {
+  margin-left: -12px;
 }
 
 .temp-sm {
@@ -490,7 +522,7 @@ button {
 
 .whether-picture {
   align-self: center;
-  padding-bottom: 5px;
+  padding-bottom: 3px;
 }
 
 .wether-desc {

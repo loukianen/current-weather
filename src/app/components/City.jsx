@@ -20,7 +20,9 @@ const getClassNames = (screenSize) => {
     'city-buttons-block': !isScreenSmall,
   });
 
-  return { buttonClass, buttonBlockClass };
+  const arrowClass = cn({ 'arrow-sm': isScreenSmall, arrow: !isScreenSmall });
+
+  return { buttonClass, buttonBlockClass, arrowClass };
 };
 
 const mapStateToProps = (state) => {
@@ -60,14 +62,14 @@ class City extends React.Component {
 
   renderButtonBlock() {
     const { screenSize } = this.props;
-    const { buttonClass, buttonBlockClass } = getClassNames(screenSize);
+    const { buttonClass, buttonBlockClass, arrowClass } = getClassNames(screenSize);
     return (
       <div className={buttonBlockClass}>
         <button className={buttonClass} type="button" onClick={this.handleChangeClick}>
           Сменить город
         </button>
-        <div className="arrow-wrap">
-          <img className="arrow" src="img/location.png" alt="arrow" />
+        <div>
+          <img className={arrowClass} src="img/location.png" alt="arrow" />
         </div>
         <button className={buttonClass} type="button" onClick={this.handleGeoClick}>
           Мое местоположение
@@ -80,10 +82,14 @@ class City extends React.Component {
     const { weatherData: { name: cityName }, screenSize } = this.props;
     const isScreenSmall = screenSize === 'small';
     const cityNameClass = cn({ font30: isScreenSmall, font50: !isScreenSmall });
+    const firstCityBlockClass = cn({
+      'first-city-block-sm': isScreenSmall,
+      'first-city-block': !isScreenSmall,
+    });
     return (
       <div className="city">
         <div id="cooseCity">
-          <div className="first-city-block">
+          <div className={firstCityBlockClass}>
             <div className={cityNameClass}>
               {cityName}
             </div>

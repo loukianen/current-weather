@@ -13,7 +13,12 @@ const getClassNames = (screenSize) => {
   });
   const infoBlockClass = cn({ 'main-block-sm': isScreenSmall, 'main-block': !isScreenSmall });
   const iconClass = cn('whether-picture', { size100: isScreenSmall, size208: !isScreenSmall });
-  const tempClass = cn({ font90: isScreenSmall, 'temp-sm': isScreenSmall, font180: !isScreenSmall });
+  const tempClass = cn({
+    font90: isScreenSmall,
+    'temp-sm': isScreenSmall,
+    font180: !isScreenSmall,
+    temp: !isScreenSmall,
+  });
   const descriptionClass = cn({
     'wether-desc-sm': isScreenSmall,
     font18: isScreenSmall,
