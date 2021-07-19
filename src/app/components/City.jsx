@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import cn from 'classnames';
 import * as actions from '../actions/index';
-import { getWeatherData } from '../utils';
+import refreshWeatherData from '../refreshWeatherData';
 import MeasureUnitsSwitch from './MeasureUnitsSwitch.jsx';
 
 const getClassNames = (screenSize) => {
@@ -55,7 +55,7 @@ class City extends React.Component {
     const { editWeatherData, setStartMode } = this.props;
     navigator.geolocation.getCurrentPosition(({ coords }) => {
       const { latitude, longitude } = coords;
-      getWeatherData({ lat: latitude, lon: longitude }, editWeatherData);
+      refreshWeatherData({ lat: latitude, lon: longitude }, editWeatherData);
       setStartMode('normal');
     });
   }

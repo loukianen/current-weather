@@ -5,8 +5,9 @@ import * as actions from '../actions/index';
 import Header from './Header.jsx';
 import MiddleBlock from './MiddleBlock.jsx';
 import Footer from './Footer.jsx';
+import refreshWeatherData from '../refreshWeatherData';
 import {
-  getWeatherData, getSavedCoords, getSavedStartMode, saveStartMode, isCoordsValid,
+  getSavedCoords, getSavedStartMode, saveStartMode, isCoordsValid,
 } from '../utils';
 
 const mapStateToProps = (state) => {
@@ -35,9 +36,9 @@ class App extends React.Component {
         if (startMode === 'normal') {
           const lastCoords = getSavedCoords();
           if (isCoordsValid(lastCoords)) {
-            getWeatherData(lastCoords, editWeatherData);
+            refreshWeatherData(lastCoords, editWeatherData);
           } else {
-            this.getWeatherDataWithGeoposition();
+            this.refreshWeatherDataWithGeoposition();
           }
         } else {
           this.initStateTimerID = setInterval(this.checkInitState.bind(this), 500);
@@ -59,14 +60,6 @@ class App extends React.Component {
       .then(() => this.checkInitState());
   }
 
-  getWeatherDataWithGeoposition() {
-    const { editWeatherData } = this.props;
-    navigator.geolocation.getCurrentPosition(({ coords }) => {
-      const { latitude, longitude } = coords;
-      getWeatherData({ lat: latitude, lon: longitude }, editWeatherData);
-    });
-  }
-
   setStartMode() {
     const { startMode, setStartMode } = this.props;
     if (startMode === 'notSet') {
@@ -74,6 +67,14 @@ class App extends React.Component {
       return Promise.resolve(setStartMode(mode));
     }
     return Promise.resolve(() => null);
+  }
+
+  refreshWeatherDataWithGeoposition() {
+    const { editWeatherData } = this.props;
+    navigator.geolocation.getCurrentPosition(({ coords }) => {
+      const { latitude, longitude } = coords;
+      refreshWeatherData({ lat: latitude, lon: longitude }, editWeatherData);
+    });
   }
 
   checkScreenSize() {

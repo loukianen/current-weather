@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import cn from 'classnames';
 import * as actions from '../actions/index';
-import { getWeatherData, getVariants } from '../utils';
+import refreshWeatherData from '../refreshWeatherData';
+import { getVariants } from '../utils';
 import cityDataJson from '../cityData';
 import MeasureUnitsSwitch from './MeasureUnitsSwitch.jsx';
 
@@ -76,11 +77,11 @@ class CitySelection extends React.Component {
     const { setAppMode, editWeatherData } = this.props;
     const { text } = this.state;
     if (text.length !== 0 && this.chosenCityId === null) {
-      getWeatherData(text, editWeatherData);
+      refreshWeatherData(text, editWeatherData);
     }
     if (text.length !== 0 && this.chosenCityId !== null) {
       const { latitude, longitude } = city[this.chosenCityId];
-      getWeatherData({ lat: latitude, lon: longitude }, editWeatherData);
+      refreshWeatherData({ lat: latitude, lon: longitude }, editWeatherData);
     }
     setAppMode('show');
   }

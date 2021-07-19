@@ -1,41 +1,33 @@
+:root {
+  --background-colour: #498cec;
+  --letter-colour: #1086ff;
+}
+
 @font-face {
-  font-family: 'Lato'; 
-  src: local('Lato'),
+  font-family: 'Lato';
+  src:
+    local('Lato'),
     url(../fonts/Lato-Bold.ttf);
   font-weight: 700;
   font-style: bold;
 }
 
 @font-face {
-  font-family: 'Lato'; 
-  src: local('Lato'),
+  font-family: 'Lato';
+  src:
+    local('Lato'),
     url(../fonts/Lato-Regular.ttf);
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Lato'; 
-  src: local('Lato'),
+  font-family: 'Lato';
+  src:
+    local('Lato'),
     url(../fonts/Lato-Light.ttf);
   font-weight: 300;
   font-style: 'light';
-}
-
-@font-face {
-  font-family: 'Lato'; 
-  src: local('Lato'),
-    url(../fonts/Lato-Thin.ttf);
-  font-weight: 200;
-  font-style: thin;
-}
-
-@font-face {
-  font-family: 'Lato'; 
-  src: local('Lato'),
-    url(../fonts/Lato-Hairline.ttf);
-  font-weight: 100;
-  font-style: 'hairline';
 }
 
 input:active,
@@ -44,7 +36,7 @@ input:focus,
 select:active,
 select:hover,
 select:focus {
-outline: none;
+  outline: none;
 }
 
 button {
@@ -112,7 +104,7 @@ button {
   width: 100%;
   display: flex;
   justify-content: center;
-  background: #FFFFFF;
+  background: #fff;
 }
 
 .modal-shadow {
@@ -144,29 +136,26 @@ button {
   text-align: center;
   background-color: white;
   border-radius: 4px;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
 }
 
 .modal-button {
   width: 180px;
   height: 30px;
-  color:white;
-  background-color: #498CEC;
+  color: white;
+  background-color: var(--background-colour);
   border-radius: 4px;
-  box-shadow: 0px 2px 8px rgba(0, 0, 255, 0.4);
+  box-shadow: 0 2px 8px rgba(0, 0, 255, 0.4);
 }
 
 .rectangle {
   height: 1024px;
   width: 1366px;
-
-  background: #498CEC;
+  background: var(--background-colour);
   border: 1px solid #979797;
   box-sizing: border-box;
-
-  font-family: 'Lato';
-
-  color: #FFFFFF;
+  font-family: 'Lato', sans-serif;
+  color: #fff;
 }
 
 .info-area {
@@ -206,7 +195,6 @@ button {
 .measure-units-switch {
   display: flex;
   padding-top: -1px;
-  padding-right: -0px;
   width: 77px;
   margin-top: 8px;
   margin-right: 15px;
@@ -224,7 +212,6 @@ button {
 .degrees-simbol {
   margin-right: 4px;
   padding-top: 3px;
-  padding-right: 0px;
   opacity: 0.4;
 }
 
@@ -251,7 +238,8 @@ button {
   border-radius: 8px;
 }
 
-.degrees-buttons-block > .item, .degrees-buttons-block-sm > .item {
+.degrees-buttons-block > .item,
+.degrees-buttons-block-sm > .item {
   border: none;
   width: 38.5px;
   color: rgba(255, 255, 255, 0.4);
@@ -262,16 +250,16 @@ button {
   border-bottom-left-radius: 8px;
 }
 
-.f-button{
+.f-button {
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 }
 
-.not-active-button{
-  background-color: #498CEC;
+.not-active-button {
+  background-color: var(--background-colour);
 }
 
-.active-button{
+.active-button {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -321,7 +309,6 @@ button {
 
 .arrow-sm {
   left: 2px;
-  bottom: 0px;
   margin-left: 30px;
   width: 30px;
   height: 30px;
@@ -360,8 +347,8 @@ button {
 .input-city-name-block {
   display: flex;
   margin-top: 6px;
-  background: #FFFFFF;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .height-97 {
@@ -389,8 +376,7 @@ button {
   margin-left: 30px;
   flex-grow: 1;
   border: none;
-
-  color: #000000;
+  color: #000;
 }
 
 .input-city-name-sm {
@@ -398,16 +384,14 @@ button {
   margin-left: 19px;
   flex-grow: 1;
   border: none;
-
-  color: #000000;
+  color: #000;
 }
 
 .select-city-name {
   font-size: 20px;
   line-height: 36px;
   border-radius: 8px;
-
-  color: #000000;
+  color: #000;
 }
 
 .city-name-submit-button {
@@ -415,7 +399,7 @@ button {
   margin-right: 27px;
   flex-grow: 0;
   border: none;
-  color: #1086FF;
+  color: var(--letter-colour);
   background-color: transparent;
 }
 
@@ -424,18 +408,16 @@ button {
   margin-right: 15px;
   flex-grow: 0;
   border: none;
-  color: #1086FF;
+  color: var(--letter-colour);
   background-color: transparent;
 }
 
 .variants {
-  top: -0px;
-  left: -0px;
   position: relative;
-  display: iinline-block;;
+  display: inline-block;
   flex-direction: column;
-  background: #FFFFFF;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   border-radius: 8px;
 }
 
@@ -448,8 +430,6 @@ button {
   display: block;
   margin-block-start: 1em;
   margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
   padding-inline-start: 40px;
 }
 
@@ -463,11 +443,12 @@ button {
   overflow: hidden;
 }
 
-.var-button:hover, .var-button:focus {
+.var-button:hover,
+.var-button:focus {
   outline: none;
-  color:white;
+  color: white;
   box-shadow: none;
-  background-color: #1086FF;
+  background-color: var(--letter-colour);
 }
 
 .middle-block {
@@ -497,7 +478,6 @@ button {
   margin-left: 23px;
   display: flex;
   flex-grow: 2;
-  padding-bottom: 0px;
   align-items: center;
   justify-content: center;
 }
@@ -535,7 +515,6 @@ button {
 .wether-desc-sm {
   min-height: 70px;
   text-align: center;
-  padding-top: 0px;
 }
 
 .footer {
@@ -615,20 +594,6 @@ button {
   padding-left: 15px;
 }
 
-/*
-@media (max-width: 1365px) {
-  .rectangle {
-    width: 100%;
-  }
-}
-
-@media (max-height: 1023px) {
-  .rectangle {
-    height: 100%;
-    min-height: 667px;
-  }
-}
-*/
 @media (max-width: 400px) {
   .rectangle {
     height: 669px;
