@@ -13,6 +13,12 @@ const appModeReducer = (state = '', action) => {
   switch (action.type) {
     case 'SET_APP_MODE':
       return action.payload;
+    case 'GET_DATA_REQUEST':
+      return 'loading';
+    case 'GET_DATA_SUCCESS':
+      return 'show';
+    case 'GET_DATA_FAILURE':
+      return 'failure';
     default:
       return state;
   }
@@ -30,6 +36,8 @@ const startModeReducer = (state = '', action) => {
 const weatherDataReducer = (state = {}, action) => {
   switch (action.type) {
     case 'EDIT_WEATHER_DATA':
+      return { ...state, ...action.payload };
+    case 'GET_DATA_SUCCESS':
       return { ...state, ...action.payload };
     default:
       return state;

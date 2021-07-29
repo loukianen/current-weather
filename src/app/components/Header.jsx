@@ -13,7 +13,7 @@ const Header = (props) => {
   const { appMode } = props;
   return (
     <div className="info-area-item">
-      {appMode === 'show' ? <City /> : <CitySelection />}
+      {appMode === 'selection' ? <CitySelection /> : <City />}
     </div>
   );
 };

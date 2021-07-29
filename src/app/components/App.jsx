@@ -19,6 +19,11 @@ const mapDispatchToProps = (dispatch) => ({
   setStartMode: (arg) => dispatch(actions.setStartMode(arg)),
   setScreenSize: (arg) => dispatch(actions.setScreenSize(arg)),
   editWeatherData: (arg) => dispatch(actions.editWeatherData(arg)),
+  loadData: {
+    start: () => dispatch(actions.getDataRequest()),
+    success: (arg) => dispatch(actions.getDataSuccess(arg)),
+    failure: () => dispatch(actions.getDataFailure()),
+  },
 });
 
 class App extends React.Component {
@@ -32,11 +37,11 @@ class App extends React.Component {
       .then(() => this.checkScreenSize())
       .then(() => this.checkInitState())
       .then(() => {
-        const { startMode, editWeatherData } = this.props;
+        const { startMode, loadData } = this.props;
         if (startMode === 'normal') {
           const lastCoords = getSavedCoords();
           if (isCoordsValid(lastCoords)) {
-            refreshWeatherData(lastCoords, editWeatherData);
+            refreshWeatherData(lastCoords, loadData);
           } else {
             this.refreshWeatherDataWithGeoposition();
           }
@@ -70,10 +75,10 @@ class App extends React.Component {
   }
 
   refreshWeatherDataWithGeoposition() {
-    const { editWeatherData } = this.props;
+    const { loadData } = this.props;
     navigator.geolocation.getCurrentPosition(({ coords }) => {
       const { latitude, longitude } = coords;
-      refreshWeatherData({ lat: latitude, lon: longitude }, editWeatherData);
+      refreshWeatherData({ lat: latitude, lon: longitude }, loadData);
     });
   }
 
@@ -138,6 +143,7 @@ App.propTypes = {
   setStartMode: PropTypes.func.isRequired,
   setScreenSize: PropTypes.func.isRequired,
   editWeatherData: PropTypes.func.isRequired,
+  loadData: PropTypes.objectOf(PropTypes.func).isRequired,
   startMode: PropTypes.string.isRequired,
   screenSize: PropTypes.string.isRequired,
 };

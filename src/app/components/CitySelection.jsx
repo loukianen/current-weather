@@ -16,9 +16,9 @@ const setFocusOnElement = (selector) => {
 };
 
 const getClassNames = (isScreenSmall) => {
-  const inputBlockClass = cn({
-    'input-city-name-block br-4': isScreenSmall,
-    'input-city-name-block br-8': !isScreenSmall,
+  const inputBlockClass = cn('input-city-name-block', {
+    'br-4': isScreenSmall,
+    'br-8': !isScreenSmall,
   });
   const inputClass = cn({
     'input-city-name-sm': isScreenSmall,
@@ -47,7 +47,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   setAppMode: (arg) => dispatch(actions.setAppMode(arg)),
-  editWeatherData: (arg) => dispatch(actions.editWeatherData(arg)),
+  loadData: {
+    start: () => dispatch(actions.getDataRequest()),
+    success: (arg) => dispatch(actions.getDataSuccess(arg)),
+    failure: () => dispatch(actions.getDataFailure()),
+  },
 });
 
 class CitySelection extends React.Component {
@@ -74,16 +78,17 @@ class CitySelection extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const { setAppMode, editWeatherData } = this.props;
+    const { setAppMode, loadData } = this.props;
     const { text } = this.state;
-    if (text.length !== 0 && this.chosenCityId === null) {
-      refreshWeatherData(text, editWeatherData);
+    if (text.length === 0) {
+      setAppMode('show');
+      return;
     }
-    if (text.length !== 0 && this.chosenCityId !== null) {
+    if (this.chosenCityId !== null) {
       const { latitude, longitude } = city[this.chosenCityId];
-      refreshWeatherData({ lat: latitude, lon: longitude }, editWeatherData);
+      refreshWeatherData({ lat: latitude, lon: longitude }, loadData);
     }
-    setAppMode('show');
+    refreshWeatherData(text, loadData);
   }
 
   handlePressKeyOnList({ id, cityName }) {
@@ -201,7 +206,7 @@ class CitySelection extends React.Component {
 
 CitySelection.propTypes = {
   setAppMode: PropTypes.func.isRequired,
-  editWeatherData: PropTypes.func.isRequired,
+  loadData: PropTypes.objectOf(PropTypes.func).isRequired,
   screenSize: PropTypes.string.isRequired,
 };
 

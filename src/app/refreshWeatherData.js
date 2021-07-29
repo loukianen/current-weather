@@ -9,21 +9,21 @@ const apiConfig = {
 
 const getWindDirection = (value) => {
   const windMapping = {
-    северный: [[0, 22], [338, 360]],
-    'северо-восточный': [[23, 67]],
-    восточный: [[68, 112]],
-    'юго-восточный': [[113, 157]],
-    южный: [[158, 202]],
-    'юго-западный': [[203, 247]],
-    западный: [[248, 292]],
-    'северо-западный': [[293, 337]],
+    северный: [[0, 23], [338, 361]],
+    'северо-восточный': [[23, 68]],
+    восточный: [[68, 113]],
+    'юго-восточный': [[113, 158]],
+    южный: [[158, 203]],
+    'юго-западный': [[203, 248]],
+    западный: [[248, 293]],
+    'северо-западный': [[293, 338]],
   };
   let direction = null;
   Object.keys(windMapping)
     .every((wind) => windMapping[wind]
       .every((range) => {
         const [beginig, end] = range;
-        if (value >= beginig && value <= end) {
+        if (value >= beginig && value < end) {
           direction = wind;
           return false;
         }
@@ -80,20 +80,26 @@ const makeRequest = (requestData, type, callBack) => {
   return axios.get(`${baseUrl}/${apiTypes[type]}?${query}`).then(callBack);
 };
 
-export default (args, setStateFunc) => {
+export default (args, setStateFunctions) => {
+  const { start, success, failure } = setStateFunctions;
+  start();
   if (typeof args === 'string') {
     makeRequest({ cityName: args }, 'byCityName', processCurrentResponse)
       .then((stateData) => {
-        setStateFunc({ ...stateData });
+        success({ ...stateData });
         const coords = getSavedCoords();
         makeRequest(coords, 'hourly', processHourlyResponse)
-          .then((hourlyData) => setStateFunc({ ...hourlyData }));
-      });
+          .then((hourlyData) => success({ ...hourlyData }))
+          .catch(() => failure());
+      })
+      .catch(() => failure());
   } else {
     makeRequest(args, 'current', processCurrentResponse)
-      .then((stateData) => setStateFunc({ ...stateData }));
+      .then((stateData) => success({ ...stateData }))
+      .catch(() => failure());
 
     makeRequest(args, 'hourly', processHourlyResponse)
-      .then((stateData) => setStateFunc({ ...stateData }));
+      .then((stateData) => success({ ...stateData }))
+      .catch(() => failure());
   }
 };

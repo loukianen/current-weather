@@ -4,26 +4,24 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { getIconFileName, transformDegrees } from '../utils';
 
-const getClassNames = (screenSize) => {
+const getClassNames = (screenSize, mode) => {
   const isScreenSmall = screenSize === 'small';
+  const isWarning = mode === 'loading' || mode === 'failure' || mode === 'geolocation_failure';
 
   const middleBlockClass = cn('info-area-item', {
-    'middle-block-sm': isScreenSmall,
-    'middle-block': !isScreenSmall,
+    'middle-block-sm': isScreenSmall, 'middle-block': !isScreenSmall,
   });
   const infoBlockClass = cn({ 'main-block-sm': isScreenSmall, 'main-block': !isScreenSmall });
   const iconClass = cn('whether-picture', { size100: isScreenSmall, size208: !isScreenSmall });
   const tempClass = cn({
-    font90: isScreenSmall,
-    'temp-sm': isScreenSmall,
-    font180: !isScreenSmall,
-    temp: !isScreenSmall,
+    font90: isScreenSmall, 'temp-sm': isScreenSmall, font180: !isScreenSmall, temp: !isScreenSmall,
   });
   const descriptionClass = cn({
     'wether-desc-sm': isScreenSmall,
     font18: isScreenSmall,
     'wether-desc': !isScreenSmall,
     font25: !isScreenSmall,
+    'warning-text': isWarning,
   });
 
   return {
@@ -31,18 +29,37 @@ const getClassNames = (screenSize) => {
   };
 };
 
+const getDescription = (text, mode) => {
+  switch (mode) {
+    case 'loading':
+      return 'Загрузка данных...';
+    case 'failure':
+      return 'Не удалось загрузить данные';
+    case 'geolocation_failure':
+      return 'Не удалось определить местоположение';
+    default:
+      return text;
+  }
+};
+
 const mapStateToProps = (state) => {
-  const { weatherData, screenSize, degreesType } = state;
-  return { weatherData, screenSize, degreesType };
+  const {
+    weatherData, screenSize, degreesType, appMode,
+  } = state;
+  return {
+    weatherData, screenSize, degreesType, appMode,
+  };
 };
 
 const MiddleBlock = (props) => {
-  const { weatherData: { icon: iconId, temp, description }, degreesType, screenSize } = props;
+  const {
+    weatherData: { icon: iconId, temp, description }, degreesType, screenSize, appMode,
+  } = props;
   const tempValue = `${degreesType === 'Celsius' ? temp : transformDegrees(temp)}°`;
   const iconFileName = `img/${getIconFileName(iconId)}.png`;
   const {
     middleBlockClass, infoBlockClass, iconClass, tempClass, descriptionClass,
-  } = getClassNames(screenSize);
+  } = getClassNames(screenSize, appMode);
 
   return (
     <div className={middleBlockClass}>
@@ -51,7 +68,7 @@ const MiddleBlock = (props) => {
         <div className={tempClass}>{tempValue}</div>
       </div>
       <div className={descriptionClass}>
-        {description}
+        {getDescription(description, appMode)}
       </div>
     </div>
   );
@@ -65,6 +82,7 @@ MiddleBlock.propTypes = {
   }).isRequired,
   degreesType: PropTypes.string.isRequired,
   screenSize: PropTypes.string.isRequired,
+  appMode: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps)(MiddleBlock);

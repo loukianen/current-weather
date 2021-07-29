@@ -517,6 +517,12 @@ button {
   text-align: center;
 }
 
+.warning-text {
+  color: red;
+  background-color: white;
+  border-radius: 4px;
+}
+
 .footer {
   display: flex;
   flex-wrap: wrap;

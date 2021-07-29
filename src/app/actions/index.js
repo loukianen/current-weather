@@ -10,6 +10,15 @@ export const setAppMode = (data) => ({
   payload: data,
 });
 
+export const getDataRequest = () => ({ type: 'GET_DATA_REQUEST' });
+
+export const getDataSuccess = (data) => ({
+  type: 'GET_DATA_SUCCESS',
+  payload: data,
+});
+
+export const getDataFailure = () => ({ type: 'GET_DATA_FAILURE' });
+
 export const setDegreesType = (data) => ({
   type: 'SET_DEGREES_TYPE',
   payload: data,
