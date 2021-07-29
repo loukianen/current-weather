@@ -37,14 +37,9 @@ class App extends React.Component {
       .then(() => this.checkScreenSize())
       .then(() => this.checkInitState())
       .then(() => {
-        const { startMode, loadData } = this.props;
+        const { startMode } = this.props;
         if (startMode === 'normal') {
-          const lastCoords = getSavedCoords();
-          if (isCoordsValid(lastCoords)) {
-            refreshWeatherData(lastCoords, loadData);
-          } else {
-            this.refreshWeatherDataWithGeoposition();
-          }
+          this.normalModeAppStart();
         } else {
           this.initStateTimerID = setInterval(this.checkInitState.bind(this), 500);
         }
@@ -61,6 +56,9 @@ class App extends React.Component {
     const { setStartMode } = this.props;
     const newStartMode = e.target.name;
     saveStartMode(newStartMode);
+    if (newStartMode === 'normal') {
+      this.normalModeAppStart();
+    }
     Promise.resolve(setStartMode(newStartMode))
       .then(() => this.checkInitState());
   }
@@ -72,6 +70,16 @@ class App extends React.Component {
       return Promise.resolve(setStartMode(mode));
     }
     return Promise.resolve(() => null);
+  }
+
+  normalModeAppStart() {
+    const { loadData } = this.props;
+    const lastCoords = getSavedCoords();
+    if (isCoordsValid(lastCoords)) {
+      refreshWeatherData(lastCoords, loadData);
+    } else {
+      this.refreshWeatherDataWithGeoposition();
+    }
   }
 
   refreshWeatherDataWithGeoposition() {
