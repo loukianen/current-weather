@@ -19,11 +19,7 @@ const mapDispatchToProps = (dispatch) => ({
   setStartMode: (arg) => dispatch(actions.setStartMode(arg)),
   setScreenSize: (arg) => dispatch(actions.setScreenSize(arg)),
   editWeatherData: (arg) => dispatch(actions.editWeatherData(arg)),
-  loadData: {
-    start: () => dispatch(actions.getDataRequest()),
-    success: (arg) => dispatch(actions.getDataSuccess(arg)),
-    failure: () => dispatch(actions.getDataFailure()),
-  },
+  loadData: actions.loadData(dispatch),
 });
 
 class App extends React.Component {

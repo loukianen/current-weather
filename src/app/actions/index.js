@@ -10,14 +10,20 @@ export const setAppMode = (data) => ({
   payload: data,
 });
 
-export const getDataRequest = () => ({ type: 'GET_DATA_REQUEST' });
+const makeRequest = () => ({ type: 'GET_DATA_REQUEST' });
 
-export const getDataSuccess = (data) => ({
+const processSuccessfulRequestResult = (data) => ({
   type: 'GET_DATA_SUCCESS',
   payload: data,
 });
 
-export const getDataFailure = () => ({ type: 'GET_DATA_FAILURE' });
+const processFailedRequestResult = () => ({ type: 'GET_DATA_FAILURE' });
+
+export const loadData = (dispatch) => ({
+  makeRequest: () => dispatch(makeRequest()),
+  processSuccessfulAnswer: (arg) => dispatch(processSuccessfulRequestResult(arg)),
+  processFailedAnswer: () => dispatch(processFailedRequestResult()),
+});
 
 export const setDegreesType = (data) => ({
   type: 'SET_DEGREES_TYPE',

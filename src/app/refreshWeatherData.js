@@ -74,32 +74,32 @@ const getQuery = (id, type, queryData) => {
   return queries[type];
 };
 
-const makeRequest = (requestData, type, callBack) => {
+const getWeatherData = (requestData, type, callBack) => {
   const { baseUrl, apiTypes, appId } = apiConfig;
   const query = getQuery(appId, type, requestData);
   return axios.get(`${baseUrl}/${apiTypes[type]}?${query}`).then(callBack);
 };
 
 export default (args, setStateFunctions) => {
-  const { start, success, failure } = setStateFunctions;
-  start();
+  const { makeRequest, processSuccessfulAnswer, processFailedAnswer } = setStateFunctions;
+  makeRequest();
   if (typeof args === 'string') {
-    makeRequest({ cityName: args }, 'byCityName', processCurrentResponse)
+    getWeatherData({ cityName: args }, 'byCityName', processCurrentResponse)
       .then((stateData) => {
-        success({ ...stateData });
+        processSuccessfulAnswer({ ...stateData });
         const coords = getSavedCoords();
-        makeRequest(coords, 'hourly', processHourlyResponse)
-          .then((hourlyData) => success({ ...hourlyData }))
-          .catch(() => failure());
+        getWeatherData(coords, 'hourly', processHourlyResponse)
+          .then((hourlyData) => processSuccessfulAnswer({ ...hourlyData }))
+          .catch(() => processFailedAnswer());
       })
-      .catch(() => failure());
+      .catch(() => processFailedAnswer());
   } else {
-    makeRequest(args, 'current', processCurrentResponse)
-      .then((stateData) => success({ ...stateData }))
-      .catch(() => failure());
+    getWeatherData(args, 'current', processCurrentResponse)
+      .then((stateData) => processSuccessfulAnswer({ ...stateData }))
+      .catch(() => processFailedAnswer());
 
-    makeRequest(args, 'hourly', processHourlyResponse)
-      .then((stateData) => success({ ...stateData }))
-      .catch(() => failure());
+    getWeatherData(args, 'hourly', processHourlyResponse)
+      .then((stateData) => processSuccessfulAnswer({ ...stateData }))
+      .catch(() => processFailedAnswer());
   }
 };

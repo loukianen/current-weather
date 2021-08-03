@@ -47,11 +47,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   setAppMode: (arg) => dispatch(actions.setAppMode(arg)),
-  loadData: {
-    start: () => dispatch(actions.getDataRequest()),
-    success: (arg) => dispatch(actions.getDataSuccess(arg)),
-    failure: () => dispatch(actions.getDataFailure()),
-  },
+  loadData: actions.loadData(dispatch),
 });
 
 class CitySelection extends React.Component {
