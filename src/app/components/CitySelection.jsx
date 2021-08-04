@@ -97,7 +97,6 @@ class CitySelection extends React.Component {
       if (e.key === 'Enter') {
         this.chosenCityId = id;
         this.setState({ text: cityName });
-        target.focus();
       }
       if (e.key === 'ArrowDown') {
         if (target.nextSibling) {

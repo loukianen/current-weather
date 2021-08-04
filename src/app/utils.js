@@ -2,7 +2,7 @@
 
 export const initState = {
   degreesType: 'Celsius', // 'Fahrenheit'
-  appMode: 'show', // 'selection'
+  appMode: 'show',
   startMode: 'notSet',
   weatherData: {
     name: 'Выберите город',
@@ -49,9 +49,11 @@ export const getIconFileName = (iconId) => {
 };
 
 export const isCoordsValid = (coords) => {
-  if (coords !== null && coords.lat && coords.lon) {
+  if (coords instanceof Object) {
     const { lat, lon } = coords;
-    return lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180;
+    const isLatitudeValid = lat >= -90 && lat <= 90;
+    const isLongitudeValide = lon >= -180 && lon <= 180;
+    return isLatitudeValid && isLongitudeValide;
   }
   return false;
 };
@@ -62,8 +64,8 @@ export const transformDegrees = (celsiusDegrees) => {
 };
 
 export const transformPressureUnits = (pressHPa) => {
-  const koefTransformation = 0.750063755419211;
-  const pressMmHg = pressHPa * koefTransformation;
+  const transformationKoef = 0.750063755419211;
+  const pressMmHg = Math.round(pressHPa * transformationKoef);
   return pressMmHg;
 };
 

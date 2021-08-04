@@ -4,10 +4,13 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 import * as actions from '../actions/index';
 
-const getBlockClass = (letter, isCelsius) => cn(`${letter}-button`, 'item', 'font18', {
-  'active-button': (isCelsius && letter === 'c') || (!isCelsius && letter === 'f'),
-  'not-active-button': (!isCelsius && letter === 'c') || (isCelsius && letter === 'f'),
-});
+const getBlockClass = (letter, isCelsius) => {
+  const suitableLetter = isCelsius ? 'c' : 'f';
+  return cn(`${letter}-button`, 'item', 'font18', {
+    'active-button': letter === suitableLetter,
+    'not-active-button': letter !== suitableLetter,
+  });
+};
 
 const getClassNames = (screenSize, degreesType) => {
   const isScreenSmall = screenSize === 'small';
