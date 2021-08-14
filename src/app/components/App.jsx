@@ -109,7 +109,7 @@ class App extends React.Component {
 
   renderModal() {
     return (
-      <div>
+      <div className="modal">
         <div className="modal-shadow" />
         <div className="modal-menu-wrapper">
           <div className="modal-menu font18">
