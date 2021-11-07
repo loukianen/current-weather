@@ -29,3 +29,7 @@ To start app at webpack server:
 ```sh
 make start
 ```
+or
+```sh
+npm run-script start
+```

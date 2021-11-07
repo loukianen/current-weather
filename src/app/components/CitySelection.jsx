@@ -5,7 +5,7 @@ import cn from 'classnames';
 import * as actions from '../actions/index';
 import refreshWeatherData from '../refreshWeatherData';
 import { getVariants } from '../utils';
-import cityDataJson from '../cityData';
+import cityDataJson from '../../sources/cityData';
 import MeasureUnitsSwitch from './MeasureUnitsSwitch.jsx';
 
 const { ids: cityIds, city } = JSON.parse(cityDataJson);

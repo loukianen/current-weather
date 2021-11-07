@@ -1,0 +1,18 @@
+module.exports = {
+  '01d': 'sun',
+  '01n': 'sun',
+  '03d': 'cloud',
+  '03n': 'cloud',
+  '04d': 'cloud',
+  '04n': 'cloud',
+  '09d': 'rain',
+  '09n': 'rain',
+  '10d': 'rain',
+  '10n': 'rain',
+  '13d': 'rain',
+  '13n': 'rain',
+  '50d': 'rain',
+  '50n': 'rain',
+  '11d': 'strom',
+  '11n': 'strom',
+};

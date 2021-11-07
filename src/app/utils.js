@@ -1,4 +1,4 @@
-/* eslint-disable import/prefer-default-export */
+import iconMapping from '../sources/iconMapping';
 
 export const initState = {
   degreesType: 'Celsius', // 'Fahrenheit'
@@ -32,19 +32,9 @@ export const getVariants = ({ city, cityIds }, str) => {
 
 export const getIconFileName = (iconId) => {
   let chosenFileName = 'partly cloudy';
-  const mapping = [
-    { fileName: 'sun', ids: ['01d', '01n'] },
-    { fileName: 'cloud', ids: ['03d', '03n', '04d', '04n'] },
-    { fileName: 'rain', ids: ['09d', '09n', '10d', '10n', '13d', '13n', '50d', '50n'] },
-    { fileName: 'strom', ids: ['11d', '11n'] },
-  ];
-  mapping.every(({ fileName, ids }) => {
-    if (ids.includes(iconId)) {
-      chosenFileName = fileName;
-      return false;
-    }
-    return true;
-  });
+  if (iconMapping[iconId]) {
+    chosenFileName = iconMapping[iconId];
+  }
   return chosenFileName;
 };
 
@@ -68,10 +58,6 @@ export const transformPressureUnits = (pressHPa) => {
   const pressMmHg = Math.round(pressHPa * transformationKoef);
   return pressMmHg;
 };
-
-export const getSavedStartMode = () => window.localStorage.getItem('currentWeatherMode');
-
-export const saveStartMode = (mode) => window.localStorage.setItem('currentWeatherMode', mode);
 
 export const saveCoords = (coords) => {
   window.localStorage.setItem('currentWeatherCoords', JSON.stringify(coords));
