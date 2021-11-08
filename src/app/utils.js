@@ -3,7 +3,6 @@ import iconMapping from '../sources/iconMapping';
 export const initState = {
   degreesType: 'Celsius', // 'Fahrenheit'
   appMode: 'show',
-  startMode: 'notSet',
   weatherData: {
     name: 'Выберите город',
     temp: 19,
