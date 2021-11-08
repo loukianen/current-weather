@@ -3,8 +3,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
-module.exports = (env) => {
-  console.log(`ENV: ${process.env.NODE_ENV}`, env);
+module.exports = () => {
+  console.log(`Current ENV.WEATHER_API_TOKEN: ${process.env.WEATHER_API_TOKEN}`);
   return {
   entry: path.join(__dirname, 'src', 'index.jsx'),
   output: {
