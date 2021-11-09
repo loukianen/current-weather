@@ -11,7 +11,7 @@
     "lintcss": "npx stylelint 'src/css/*.css'",
     "start": "node ./src/setWeatherToken.js && webpack serve --mode development",
     "removeToken": "node ./src/unsetWeatherToken.js",
-    "build": "webpack --mode production"
+    "build": "node ./src/setWeatherToken.js && webpack --mode production"
   },
   "repository": {
     "type": "git",
