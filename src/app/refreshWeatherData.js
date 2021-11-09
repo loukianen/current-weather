@@ -1,10 +1,11 @@
 import axios from 'axios';
+import getWeatherApiToken from '../sources/getWeatherApiToken';
 import { saveCoords, getSavedCoords, transformPressureUnits } from './utils';
 
 const apiConfig = {
   apiTypes: { current: 'weather', hourly: 'onecall', byCityName: 'weather' },
   baseUrl: 'https://api.openweathermap.org/data/2.5',
-  appId: '97d19b5fe75467c34c18e4455586aa9d',
+  appId: getWeatherApiToken(), // '97d19b5fe75467c34c18e4455586aa9d',
 };
 
 const getWindDirection = (value) => {
