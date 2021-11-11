@@ -5,7 +5,7 @@ import { saveCoords, getSavedCoords, transformPressureUnits } from './utils';
 const apiConfig = {
   apiTypes: { current: 'weather', hourly: 'onecall', byCityName: 'weather' },
   baseUrl: 'https://api.openweathermap.org/data/2.5',
-  appId: getWeatherApiToken(), // '97d19b5fe75467c34c18e4455586aa9d',
+  appId: getWeatherApiToken(),
 };
 
 const getWindDirection = (value) => {

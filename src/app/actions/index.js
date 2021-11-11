@@ -1,5 +1,3 @@
-/* eslint-disable import/prefer-default-export */
-
 export const editWeatherData = (data) => ({
   type: 'EDIT_WEATHER_DATA',
   payload: data,

@@ -30,16 +30,13 @@ const getClassNames = (screenSize, mode) => {
 };
 
 const getDescription = (text, mode) => {
-  switch (mode) {
-    case 'loading':
-      return 'Загрузка данных...';
-    case 'failure':
-      return 'Не удалось загрузить данные';
-    case 'geolocation_failure':
-      return 'Не удалось определить местоположение';
-    default:
-      return text;
-  }
+  const textMapping = {
+    loading: 'Загрузка данных...',
+    failure: 'Не удалось загрузить данные',
+    geolocation_failure: 'Не удалось определить местоположение',
+  };
+
+  return textMapping[mode] ? textMapping[mode] : text;
 };
 
 const mapStateToProps = (state) => {

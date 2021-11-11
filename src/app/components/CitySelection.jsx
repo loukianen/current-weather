@@ -5,10 +5,10 @@ import cn from 'classnames';
 import * as actions from '../actions/index';
 import refreshWeatherData from '../refreshWeatherData';
 import { getVariants } from '../utils';
-import cityDataJson from '../../sources/cityData';
+import getCityData from '../../sources/getCityData';
 import MeasureUnitsSwitch from './MeasureUnitsSwitch.jsx';
 
-const { ids: cityIds, city } = JSON.parse(cityDataJson);
+const { ids: cityIds, city } = getCityData();
 
 const setFocusOnElement = (selector) => {
   const element = document.querySelector(selector);
