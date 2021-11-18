@@ -1,34 +1,7 @@
+import '../../css/footerStyle.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import cn from 'classnames';
-
-const getBlockClass = (blockNumber, screenType) => {
-  if (screenType === 'small') {
-    return `block-${blockNumber}-sm`;
-  }
-  return `block-${blockNumber}`;
-};
-
-const getClassNames = (screenSize) => {
-  const isScreenSmall = screenSize === 'small';
-  const blockNameClass = cn({
-    'weather-block-name-sm': isScreenSmall,
-    font15: isScreenSmall,
-    'weather-block-name': !isScreenSmall,
-    font18: !isScreenSmall,
-  });
-  const blockValueClass = cn({ 'font18-700': isScreenSmall, font25: !isScreenSmall });
-  const blockWrapperClass = cn({
-    'footer-item-2': isScreenSmall,
-    'footer-item-4': !isScreenSmall,
-  });
-  const footerClass = cn({ 'footer-sm': isScreenSmall, footer: !isScreenSmall });
-  const footerWrapClass = cn('info-area-item', 'footer-wrap');
-  return {
-    blockNameClass, blockValueClass, blockWrapperClass, footerClass, footerWrapClass,
-  };
-};
 
 const getRenderData = (data) => {
   const {
@@ -44,30 +17,27 @@ const getRenderData = (data) => {
 };
 
 const mapStateToProps = (state) => {
-  const { weatherData, screenSize } = state;
-  return { weatherData, screenSize };
+  const { weatherData } = state;
+  return { weatherData };
 };
 
 const Footer = (props) => {
-  const { weatherData, screenSize } = props;
-  const {
-    blockWrapperClass, blockNameClass, blockValueClass, footerWrapClass, footerClass,
-  } = getClassNames(screenSize);
+  const { weatherData } = props;
   const renderData = getRenderData(weatherData);
 
-  const renderWeatherBlocks = (screenType) => renderData.map(({ blockName, value }, i) => (
-    <div key={blockName} className={blockWrapperClass}>
-      <div className={getBlockClass(i + 1, screenType)}>
-        <div className={blockNameClass}>{blockName}</div>
-        <div className={blockValueClass}>{value}</div>
+  const renderWeatherBlocks = () => renderData.map(({ blockName, value }, i) => (
+    <div key={blockName} className="footer-item">
+      <div className={`block-${i + 1}`}>
+        <div className="weather-block-name">{blockName}</div>
+        <div className="weather-block-value">{value}</div>
       </div>
     </div>
   ));
 
   return (
-    <div className={footerWrapClass}>
-      <div className={footerClass}>
-        {renderWeatherBlocks(screenSize)}
+    <div className="info-area-item footer-wrap">
+      <div className="footer">
+        {renderWeatherBlocks()}
       </div>
     </div>
   );
@@ -81,7 +51,6 @@ Footer.propTypes = {
     direction: PropTypes.string,
     pop: PropTypes.number,
   }).isRequired,
-  screenSize: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps)(Footer);

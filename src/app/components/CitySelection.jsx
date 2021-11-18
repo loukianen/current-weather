@@ -1,7 +1,7 @@
+import '../../css/citySelectionStyle.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import cn from 'classnames';
 import * as actions from '../actions/index';
 import refreshWeatherData from '../refreshWeatherData';
 import { getVariants } from '../utils';
@@ -13,31 +13,6 @@ const { ids: cityIds, city } = getCityData();
 const setFocusOnElement = (selector) => {
   const element = document.querySelector(selector);
   element.focus();
-};
-
-const getClassNames = (isScreenSmall) => {
-  const inputBlockClass = cn('input-city-name-block', {
-    'br-4': isScreenSmall,
-    'br-8': !isScreenSmall,
-  });
-  const inputClass = cn({
-    'input-city-name-sm': isScreenSmall,
-    'height-53': isScreenSmall,
-    font15: isScreenSmall,
-    'input-city-name': !isScreenSmall,
-    'height-97': !isScreenSmall,
-    font30: !isScreenSmall,
-  });
-  const submitButtonClass = cn({
-    'city-name-submit-button-sm': isScreenSmall,
-    'width-22': isScreenSmall,
-    'font15-400': isScreenSmall,
-    'city-name-submit-button': !isScreenSmall,
-    'width-55': !isScreenSmall,
-    font30: !isScreenSmall,
-  });
-
-  return { inputBlockClass, inputClass, submitButtonClass };
 };
 
 const mapStateToProps = (state) => {
@@ -53,7 +28,6 @@ const mapDispatchToProps = (dispatch) => ({
 class CitySelection extends React.Component {
   constructor(props) {
     super(props);
-    this.isScreenSmall = props.screenSize === 'small';
     this.handleChangeText = this.handleChangeText.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.choseCity = this.choseCity.bind(this);
@@ -134,18 +108,13 @@ class CitySelection extends React.Component {
 
   renderVariants() {
     const selctedVariants = this.variants.length > 7 ? this.variants.slice(0, 7) : this.variants;
-    const listItemClass = cn('var-button', {
-      'height-22': this.isScreenSmall,
-      font22: this.isScreenSmall,
-      'height-53': !this.isScreenSmall,
-      font25: !this.isScreenSmall,
-    });
+
     return selctedVariants.map(({ id, cityName }) => (
       <div
         key={id}
         name="listItem"
         role="button"
-        className={listItemClass}
+        className="var-button"
         tabIndex="-1"
         onClick={this.choseCity({ id, cityName })}
         onKeyDown={this.handlePressKeyOnList({ id, cityName })}
@@ -157,13 +126,12 @@ class CitySelection extends React.Component {
 
   renderForm() {
     /* eslint-disable jsx-a11y/no-autofocus */
-    const { inputBlockClass, inputClass, submitButtonClass } = getClassNames(this.isScreenSmall);
     const { text } = this.state;
     return (
       <form className="form-city-name" onSubmit={this.handleSubmit}>
-        <div className={inputBlockClass}>
+        <div className="input-city-name-block">
           <input
-            className={inputClass}
+            className="input-city-name"
             name="city"
             value={text}
             autoComplete="off"
@@ -171,21 +139,19 @@ class CitySelection extends React.Component {
             onChange={this.handleChangeText}
             onKeyDown={this.handlePressKeyOnInput}
           />
-          <button className={submitButtonClass} type="submit">OK</button>
+          <button className="city-name-submit-button" type="submit">OK</button>
         </div>
       </form>
     );
+    /* eslint-enable jsx-a11y/no-autofocus */
   }
 
   render() {
     const { screenSize } = this.props;
-    const containerClass = cn({
-      'city-select-container-sm': this.isScreenSmall,
-      'city-select-container': !this.isScreenSmall,
-    });
+
     return (
       <div className="container-wrap">
-        <div className={containerClass}>
+        <div className="city-select-container">
           {this.renderForm()}
           <div className="variants">
             <div className="variants-wraper" hidden={this.variants.length < 1}>

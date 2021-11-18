@@ -1,3 +1,4 @@
+import '../../css/measureUnitsSwitchStyle.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -12,31 +13,9 @@ const getBlockClass = (letter, isCelsius) => {
   });
 };
 
-const getClassNames = (screenSize, degreesType) => {
-  const isScreenSmall = screenSize === 'small';
-  const isCelsius = degreesType === 'Celsius';
-
-  const switchClass = cn({
-    'measure-units-switch-sm': isScreenSmall,
-    'measure-units-switch': !isScreenSmall,
-  });
-  const buttonBlockClass = cn({
-    'degrees-buttons-block-sm': isScreenSmall,
-    'degrees-buttons-block': !isScreenSmall,
-  });
-  const blockClassC = getBlockClass('c', isCelsius);
-  const blockClassF = getBlockClass('f', isCelsius);
-  const letterClassC = isCelsius ? 'active-letter' : null;
-  const letterClassF = isCelsius ? null : 'active-letter';
-
-  return {
-    switchClass, buttonBlockClass, blockClassC, blockClassF, letterClassC, letterClassF,
-  };
-};
-
 const mapStateToProps = (state) => {
-  const { screenSize, degreesType } = state;
-  return { screenSize, degreesType };
+  const { degreesType } = state;
+  return { degreesType };
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -44,21 +23,23 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const MeasureUnitsSwitch = (props) => {
-  const { screenSize, degreesType, setDegreesType } = props;
+  const { degreesType, setDegreesType } = props;
   const isCelsius = degreesType === 'Celsius';
+  const blockClassC = getBlockClass('c', isCelsius);
+  const blockClassF = getBlockClass('f', isCelsius);
+  const letterClassC = isCelsius ? 'active-letter' : null;
+  const letterClassF = isCelsius ? null : 'active-letter';
+
   const handleClick = (e) => {
     e.stopPropagation();
     const newDegrees = degreesType === 'Celsius' ? 'Fahrenheit' : 'Celsius';
     setDegreesType(newDegrees);
   };
-  const {
-    switchClass, buttonBlockClass, blockClassC, blockClassF, letterClassC, letterClassF,
-  } = getClassNames(screenSize, degreesType);
 
   return (
-    <div className={switchClass}>
-      <div className="degrees-simbol font18">°</div>
-      <div className={buttonBlockClass}>
+    <div className="measure-units-switch">
+      <div className="degrees-simbol">°</div>
+      <div className="degrees-buttons-block">
         <button className={blockClassC} type="button" onClick={handleClick} disabled={isCelsius}>
           <div className={letterClassC}>C</div>
         </button>
@@ -73,7 +54,6 @@ const MeasureUnitsSwitch = (props) => {
 MeasureUnitsSwitch.propTypes = {
   setDegreesType: PropTypes.func.isRequired,
   degreesType: PropTypes.string.isRequired,
-  screenSize: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MeasureUnitsSwitch);

@@ -13,6 +13,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
+      favicon: './src/public/favicon.ico',
       filename: 'index.html',
       template: path.join(__dirname, 'src', 'public', 'index.html'),
     }),
