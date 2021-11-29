@@ -159,7 +159,7 @@ class CitySelection extends React.Component {
             </div>
           </div>
         </div>
-        {screenSize === 'desktop' ? <MeasureUnitsSwitch /> : null}
+        {window.innerWidth >= 450 ? <MeasureUnitsSwitch /> : null}
       </div>
     );
   }

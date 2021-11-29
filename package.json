@@ -1,6 +1,6 @@
 {
   "name": "current-weather",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "app for get a current data of the weather",
   "main": "src/index.jsx",
   "engines": {
@@ -27,6 +27,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.4",
+    "react-router-dom": "^6.0.2",
     "redux": "^4.1.0",
     "redux-thunk": "^2.3.0"
   },

@@ -29,6 +29,11 @@ module.exports = {
     port: 8020,
     watchContentBase: true,
     progress: true,
+    historyApiFallback: {
+      rewrites: [
+        { from: /^\/$/, to: '/dist/bundle.js' },
+      ],
+    },
   },
 
   module: {
