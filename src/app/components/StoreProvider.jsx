@@ -1,4 +1,3 @@
-import '../../css/style.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
@@ -13,11 +12,8 @@ import { initState } from '../utils';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // eslint-enable
 
-const getStore = (mode = 'app', isSelection = false) => {
+const getStore = (mode = 'app') => {
   const currentState = { ...initState };
-  if (isSelection) {
-    currentState.appMode = 'selection';
-  }
   const correctStateMapping = {
     desktop: () => {
       currentState.weatherData.name = 'Омск';
@@ -37,8 +33,8 @@ const getStore = (mode = 'app', isSelection = false) => {
 };
 
 const StoreProvider = (props) => {
-  const { mode, isSelection } = props;
-  const store = getStore(mode, isSelection);
+  const { mode } = props;
+  const store = getStore(mode);
   return (
     <Provider store={store}>
       {mode === 'desktop' || mode === 'mobile' ? <ShowTemplate /> : <App />}
@@ -48,7 +44,6 @@ const StoreProvider = (props) => {
 
 StoreProvider.propTypes = {
   mode: PropTypes.string.isRequired,
-  isSelection: PropTypes.bool.isRequired,
 };
 
 export default StoreProvider;

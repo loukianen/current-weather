@@ -10,7 +10,6 @@
   margin-right: 4px;
   padding-top: 3px;
   opacity: 0.4;
-
   font-size: 19px;
   line-height: 22.6px;
   font-weight: 300;
@@ -55,25 +54,15 @@
   color: white;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 770px) {
   .measure-units-switch {
-    display: flex;
     padding-top: -5px;
     padding-right: 14px;
-    width: 77px;
-    margin-top: 8px;
     margin-right: 11px;
   }
 
   .degrees-buttons-block {
     margin-top: -2px;
     margin-left: 5.5px;
-    display: flex;
-    justify-content: center;
-    width: 77px;
-    height: 29px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    box-sizing: border-box;
-    border-radius: 8px;
   }
 }

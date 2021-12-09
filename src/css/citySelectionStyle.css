@@ -65,7 +65,6 @@
   flex-grow: 1;
   border: none;
   color: #000;
-
   font-size: 30px;
   line-height: 36px;
   font-weight: 400;
@@ -79,7 +78,6 @@
   border: none;
   color: var(--letter-colour);
   background-color: transparent;
-
   font-size: 30px;
   line-height: 36px;
   font-weight: 400;
@@ -107,7 +105,6 @@
   background-color: white;
   text-align: left;
   overflow: hidden;
-
   font-size: 25px;
   line-height: 30px;
 }
@@ -120,70 +117,26 @@
   background-color: var(--letter-colour);
 }
 
-@media (max-width: 400px) {
-  .city-select-container-sm {
-    position: absolute;
-    margin-left: 0;
-    top: 27px;
-    left: 28px;
-    width: 332px;
-    height: 53px;
-  }
-
+@media (max-width: 770px) {
   .input-city-name-block {
-    display: flex;
-    margin-top: 6px;
-    background: #fff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     border-radius: 4px;
   }
 
   .input-city-name {
     height: 53px;
-    margin-top: 2px;
-    margin-left: 30px;
-    flex-grow: 1;
-    border: none;
-    color: #000;
-  
     font-size: 15px;
     line-height: 18px;
-    font-weight: 300;
   }
 
   .city-name-submit-button {
     width: 22px;
-    margin-top: 4px;
-    margin-right: 27px;
-    flex-grow: 0;
-    border: none;
-    color: var(--letter-colour);
-    background-color: transparent;
-
     font-size: 15px;
     line-height: 18px;
-    font-weight: 400;
   }
 
   .var-button {
     height: 22px;
-    border: none;
-    color: black;
-    padding-top: 10px;
-    padding-left: 5px;
-    background-color: white;
-    text-align: left;
-    overflow: hidden;
-  
     font-size: 22px;
-    line-height: 27px;
-  }
-
-  .var-button:hover,
-  .var-button:focus {
-    outline: none;
-    color: white;
-    box-shadow: none;
-    background-color: var(--letter-colour);
+    line-height: 18px;
   }
 }

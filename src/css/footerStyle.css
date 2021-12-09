@@ -1,7 +1,7 @@
 .footer {
+  margin-top: 10%;
   display: flex;
   flex-wrap: wrap;
-  margin-top: 1px;
   flex: 1 1 auto;
 }
 
@@ -11,8 +11,8 @@
 
 .footer-item {
   width: 25%;
-  align-self: flex-end;
-  margin-bottom: 46px;
+  align-self: flex-start;
+  margin-bottom: 2%;
 }
 
 .weather-block-name {
@@ -38,31 +38,9 @@
   padding-left: 22.5px;
 }
 
-@media (max-width: 400px) {
-  .footer {
-    min-height: 150px;
-    align-self: flex-end;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    flex: none;
-    margin-top: 0;
-    padding-bottom: 5px;
-    padding-left: 1px;
-  }
-
+@media (max-width: 770px) {
   .footer-item {
     width: 50%;
-    align-self: flex-end;
-    margin-bottom: 0;
-  }
-
-  .weather-block-name {
-    mix-blend-mode: normal;
-    opacity: 0.6;
-    margin-bottom: 0;
-    padding-bottom: 3px;
-    padding-left: 1px;
   }
 
   .weather-block-value {
@@ -76,16 +54,16 @@
     margin-left: -2px;
     padding-left: 4px;
   }
-  
+
   .block-2 {
     margin-bottom: 3px;
     margin-left: -2px;
   }
-  
+
   .block-3 {
     padding-left: 4px;
   }
-  
+
   .block-4 {
     padding-left: 15px;
   }

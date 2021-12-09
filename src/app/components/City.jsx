@@ -60,16 +60,14 @@ class City extends React.Component {
   render() {
     const { weatherData: { name: cityName } } = this.props;
     return (
-      <div className="city">
-        <div id="cooseCity">
-          <div className="first-city-block">
-            <div className="city-name">
-              {cityName}
-            </div>
-            <MeasureUnitsSwitch />
+      <div>
+        <div className="first-city-block">
+          <div className="city-name">
+            {cityName}
           </div>
-          {this.renderButtonBlock()}
+          <MeasureUnitsSwitch />
         </div>
+        {this.renderButtonBlock()}
       </div>
     );
   }

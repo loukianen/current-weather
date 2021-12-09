@@ -1,5 +1,6 @@
 :root {
-  --background-colour: #498cec;
+  --background-colour-desktop: #498cec;
+  --background-colour-mobile: #7290b9;
   --letter-colour: #1086ff;
 }
 
@@ -47,18 +48,29 @@ button {
   background-color: transparent;
 }
 
+.main {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .desktop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 100%;
   width: 100%;
-  display: flex;
-  justify-content: center;
   background: #fff;
 }
 
 .rectangle {
-  height: 1024px;
-  width: 1366px;
-  background: var(--background-colour);
+  max-width: 1366px;
+  height: calc(100% - 5px);
+  width: calc(100% - 5px);
+  padding: 4.5%;
+  background: var(--background-colour-desktop);
   border: 1px solid #979797;
   box-sizing: border-box;
   font-family: 'Lato', sans-serif;
@@ -68,12 +80,8 @@ button {
 .info-area {
   display: flex;
   flex-direction: column;
-  height: 85.77%;
-  width: 87.26%;
-  margin-left: 7.25%;
-  margin-right: 5.49%;
-  margin-top: 5.32%;
-  margin-bottom: 11.91%;
+  justify-content: space-between;
+  height: 100%;
 }
 
 .info-area-item {
@@ -85,18 +93,18 @@ button {
   justify-content: space-between;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 770px) {
   .rectangle {
-    height: 669px;
-    max-width: 378px;
+    background: var(--background-colour-mobile);
+  }
+}
+
+@media (max-height: 550px) {
+  .info-area {
+    height: auto;
   }
 
-  .info-area {
-    height: 93%;
-    width: 85.83%;
-    margin-left: 5.07%;
-    margin-right: 9.1%;
-    margin-top: 2.85%;
-    margin-bottom: 11.2%;
+  .rectangle {
+    overflow-x: auto;
   }
 }

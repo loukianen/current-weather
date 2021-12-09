@@ -15,10 +15,7 @@ const setFocusOnElement = (selector) => {
   element.focus();
 };
 
-const mapStateToProps = (state) => {
-  const { screenSize } = state;
-  return { screenSize };
-};
+const mapStateToProps = () => {};
 
 const mapDispatchToProps = (dispatch) => ({
   setAppMode: (arg) => dispatch(actions.setAppMode(arg)),
@@ -147,8 +144,6 @@ class CitySelection extends React.Component {
   }
 
   render() {
-    const { screenSize } = this.props;
-
     return (
       <div className="container-wrap">
         <div className="city-select-container">
@@ -159,7 +154,7 @@ class CitySelection extends React.Component {
             </div>
           </div>
         </div>
-        {window.innerWidth >= 450 ? <MeasureUnitsSwitch /> : null}
+        {window.innerWidth >= 770 ? <MeasureUnitsSwitch /> : null}
       </div>
     );
   }
@@ -168,7 +163,6 @@ class CitySelection extends React.Component {
 CitySelection.propTypes = {
   setAppMode: PropTypes.func.isRequired,
   loadData: PropTypes.objectOf(PropTypes.func).isRequired,
-  screenSize: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CitySelection);
