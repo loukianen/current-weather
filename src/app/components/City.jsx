@@ -13,7 +13,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   setAppMode: (arg) => dispatch(actions.setAppMode(arg)),
-  setStartMode: (arg) => dispatch(actions.setStartMode(arg)),
   loadData: actions.loadData(dispatch),
 });
 
@@ -25,18 +24,16 @@ class City extends React.Component {
   }
 
   handleChangeClick(e) {
-    const { setStartMode, setAppMode } = this.props;
+    const { setAppMode } = this.props;
     e.stopPropagation();
     setAppMode('selection');
-    setStartMode('normal');
   }
 
   handleGeoClick(e) {
     e.stopPropagation();
-    const { loadData, setStartMode, setAppMode } = this.props;
+    const { loadData, setAppMode } = this.props;
     navigator.geolocation.getCurrentPosition(({ coords }) => {
       const { latitude, longitude } = coords;
-      setStartMode('normal');
       refreshWeatherData({ lat: latitude, lon: longitude }, loadData);
     }, () => setAppMode('geolocation_failure'));
   }
@@ -75,7 +72,6 @@ class City extends React.Component {
 
 City.propTypes = {
   setAppMode: PropTypes.func.isRequired,
-  setStartMode: PropTypes.func.isRequired,
   loadData: PropTypes.objectOf(PropTypes.func).isRequired,
   weatherData: PropTypes.shape({
     name: PropTypes.string,

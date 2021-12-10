@@ -15,7 +15,7 @@ const setFocusOnElement = (selector) => {
   element.focus();
 };
 
-const mapStateToProps = () => {};
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = (dispatch) => ({
   setAppMode: (arg) => dispatch(actions.setAppMode(arg)),

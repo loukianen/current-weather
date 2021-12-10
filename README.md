@@ -2,26 +2,24 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/100c956d49d955217d82/maintainability)](https://codeclimate.com/github/loukianen/current-weather/maintainability)
 
-App shows the current weather in a chosen city. App suggest 1082 russian city, but you can input any city name or use your current geoposition. There are two width of screen for accurate layout: 1366px and 376px with a unique weather data. App save the mode and last chosen city in local storage. Used React + Redux, custom CSS, Webpack, Eslint with some plugins.
+App shows the current weather in a chosen city. App suggest 1082 russian city, but you can input any city name or use your current geoposition. The customer provided two designs for wide and narrow screens. You can watch https://current-weather-gamma.vercel.app/desktop and https://current-weather-gamma.vercel.app/mobile accordingly using less than 770px screen width for the second option. When viewing a design, no actual weather data is loaded.
+App save last chosen city in local storage. Used React + Redux, custom CSS, Webpack, Eslint with some plugins. Routing is done using the React Router library.
 
 ## To app
 
 https://current-weather-gamma.vercel.app/
 
-## Installation
+## Local usage
+### Installation
 
 Install:
 ```sh
 make install
 ```
-
-## Run linter
-
-```sh
-$ make lint
+You need to get your personal token from http://openweathermap.org, create file .env in root of progect end put next text in this file:
 ```
-
-## Local usage
+WEATHER_API_TOKEN='your token'
+```
 
 ### Simple run
 
@@ -32,4 +30,10 @@ make start
 or
 ```sh
 npm run-script start
+```
+
+### Run linter
+
+```sh
+$ make lint
 ```

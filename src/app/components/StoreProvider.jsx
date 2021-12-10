@@ -12,9 +12,9 @@ import { initState } from '../utils';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // eslint-enable
 
-const getStore = (mode = 'app') => {
+const getStore = (mode) => {
   const currentState = { ...initState };
-  const correctStateMapping = {
+  const editStateMapping = {
     desktop: () => {
       currentState.weatherData.name = 'Омск';
       currentState.weatherData.description = 'Преимущественно солнечно';
@@ -26,8 +26,8 @@ const getStore = (mode = 'app') => {
       currentState.weatherData.description = 'Дождь';
     },
   };
-  if (correctStateMapping[mode]) {
-    correctStateMapping[mode]();
+  if (editStateMapping[mode]) {
+    editStateMapping[mode]();
   }
   return createStore(reducer, currentState, composeEnhancers(applyMiddleware(thunk)));
 };
@@ -42,8 +42,12 @@ const StoreProvider = (props) => {
   );
 };
 
+StoreProvider.defaultProps = {
+  mode: 'app',
+};
+
 StoreProvider.propTypes = {
-  mode: PropTypes.string.isRequired,
+  mode: PropTypes.string,
 };
 
 export default StoreProvider;

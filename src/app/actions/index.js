@@ -27,13 +27,3 @@ export const setDegreesType = (data) => ({
   type: 'SET_DEGREES_TYPE',
   payload: data,
 });
-
-export const setScreenSize = (data) => ({
-  type: 'SET_SCREEN_SIZE',
-  payload: data,
-});
-
-export const setStartMode = (data) => ({
-  type: 'SET_START_MODE',
-  payload: data,
-});

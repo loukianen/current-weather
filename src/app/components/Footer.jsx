@@ -11,7 +11,7 @@ const getRenderData = (data) => {
   const windSpeed = { blockName: 'Ветер', value: `${speed} м/с, ${direction}` };
   const atmosphericPressure = { blockName: 'Давление', value: `${pressure} мм рт. ст.` };
   const hum = { blockName: 'Влажность', value: `${humidity}%` };
-  const probabilityOfPrecipitation = { blockName: 'Вероятность дождя', value: `${pop}%` };
+  const probabilityOfPrecipitation = { blockName: 'Вероятность осадков', value: `${pop}%` };
 
   return [windSpeed, atmosphericPressure, hum, probabilityOfPrecipitation];
 };

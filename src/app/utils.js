@@ -14,7 +14,6 @@ export const initState = {
     pop: 10,
     description: 'Данные не загружены',
   },
-  // screenSize: 'desktop',
 };
 
 export const getVariants = ({ city, cityIds }, str) => {

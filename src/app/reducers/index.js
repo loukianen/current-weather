@@ -24,15 +24,6 @@ const appModeReducer = (state = '', action) => {
   }
 };
 
-const startModeReducer = (state = '', action) => {
-  switch (action.type) {
-    case 'SET_START_MODE':
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
 const weatherDataReducer = (state = {}, action) => {
   switch (action.type) {
     case 'EDIT_WEATHER_DATA':
@@ -44,19 +35,8 @@ const weatherDataReducer = (state = {}, action) => {
   }
 };
 
-const screenSizeReducer = (state = '', action) => {
-  switch (action.type) {
-    case 'SET_SCREEN_SIZE':
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
 export default combineReducers({
   degreesType: degreesTypeReducer,
   appMode: appModeReducer,
-  startMode: startModeReducer,
   weatherData: weatherDataReducer,
-  screenSize: screenSizeReducer,
 });

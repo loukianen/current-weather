@@ -11,19 +11,18 @@ import { getSavedCoords, isCoordsValid } from '../utils';
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = (dispatch) => ({
-  setScreenSize: (arg) => dispatch(actions.setScreenSize(arg)),
   loadData: actions.loadData(dispatch),
 });
 
 class App extends React.Component {
   componentDidMount() {
     this.normalModeAppStart();
-    this.screenTimerID = setInterval(this.checkScreenSize.bind(this), 500);
+    // this.screenTimerID = setInterval(this.checkScreenSize.bind(this), 500);
   }
 
-  componentWillUnmount() {
-    clearInterval(this.screenTimerID);
-  }
+  // componentWillUnmount() {
+  //   clearInterval(this.screenTimerID);
+  // }
 
   normalModeAppStart() {
     const { loadData } = this.props;
@@ -43,11 +42,11 @@ class App extends React.Component {
     });
   }
 
-  checkScreenSize() {
-    const { setScreenSize } = this.props;
-    const newSize = window.innerWidth <= 450 ? 'small' : 'desktop';
-    return Promise.resolve(setScreenSize(newSize));
-  }
+  // checkScreenSize() {
+  //   const { setScreenSize } = this.props;
+  //   const newSize = window.innerWidth <= 450 ? 'small' : 'desktop';
+  //   return Promise.resolve(setScreenSize(newSize));
+  // }
 
   render() {
     return (
@@ -65,7 +64,7 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  setScreenSize: PropTypes.func.isRequired,
+  // setScreenSize: PropTypes.func.isRequired,
   loadData: PropTypes.objectOf(PropTypes.func).isRequired,
 };
 
