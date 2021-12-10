@@ -1,0 +1,68 @@
+.measure-units-switch {
+  display: flex;
+  padding-top: -1px;
+  width: 77px;
+  margin-top: 8px;
+  margin-right: 15px;
+}
+
+.degrees-simbol {
+  margin-right: 4px;
+  padding-top: 3px;
+  opacity: 0.4;
+  font-size: 19px;
+  line-height: 22.6px;
+  font-weight: 300;
+}
+
+.degrees-buttons-block {
+  margin-left: 5.5px;
+  display: flex;
+  justify-content: center;
+  width: 77px;
+  height: 29px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.degrees-buttons-block > .item {
+  border: none;
+  width: 38.5px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.c-button {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.f-button {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.not-active-button {
+  background-color: var(--background-colour);
+}
+
+.active-button {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.active-letter {
+  color: white;
+}
+
+@media (max-width: 770px) {
+  .measure-units-switch {
+    padding-top: -5px;
+    padding-right: 14px;
+    margin-right: 11px;
+  }
+
+  .degrees-buttons-block {
+    margin-top: -2px;
+    margin-left: 5.5px;
+  }
+}

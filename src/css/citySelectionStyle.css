@@ -1,0 +1,142 @@
+.font15 {
+  font-size: 15px;
+  line-height: 18px;
+  font-weight: 300;
+}
+
+.font15-400 {
+  font-size: 15px;
+  line-height: 18px;
+  font-weight: 400;
+}
+
+.font30 {
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 400;
+}
+
+.form-city-name {
+  z-index: 2;
+}
+
+.container-wrap {
+  display: flex;
+  justify-content: space-between;
+}
+
+.city-select-container {
+  margin-left: -3px;
+  width: 579px;
+}
+
+.input-city-name-block {
+  display: flex;
+  margin-top: 6px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+}
+
+.height-97 {
+  height: 97px;
+}
+
+.height-53 {
+  height: 53px;
+}
+
+.height-22 {
+  height: 22px;
+}
+
+.width-55 {
+  width: 55px;
+}
+
+.width-22 {
+  width: 22px;
+}
+
+.input-city-name {
+  height: 97px;
+  margin-top: 2px;
+  margin-left: 30px;
+  flex-grow: 1;
+  border: none;
+  color: #000;
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 400;
+}
+
+.city-name-submit-button {
+  width: 55px;
+  margin-top: 4px;
+  margin-right: 27px;
+  flex-grow: 0;
+  border: none;
+  color: var(--letter-colour);
+  background-color: transparent;
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 400;
+}
+
+.variants {
+  position: relative;
+  display: inline-block;
+  flex-direction: column;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+}
+
+.variants-wraper {
+  padding: 5px 0 5px 0;
+}
+
+.var-button {
+  height: 53px;
+  border: none;
+  color: black;
+  padding-top: 10px;
+  padding-left: 5px;
+  background-color: white;
+  text-align: left;
+  overflow: hidden;
+  font-size: 25px;
+  line-height: 30px;
+}
+
+.var-button:hover,
+.var-button:focus {
+  outline: none;
+  color: white;
+  box-shadow: none;
+  background-color: var(--letter-colour);
+}
+
+@media (max-width: 770px) {
+  .input-city-name-block {
+    border-radius: 4px;
+  }
+
+  .input-city-name {
+    height: 53px;
+    font-size: 15px;
+    line-height: 18px;
+  }
+
+  .city-name-submit-button {
+    width: 22px;
+    font-size: 15px;
+    line-height: 18px;
+  }
+
+  .var-button {
+    height: 22px;
+    font-size: 22px;
+    line-height: 18px;
+  }
+}

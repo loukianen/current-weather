@@ -8,7 +8,7 @@ import Footer from './Footer.jsx';
 import refreshWeatherData from '../refreshWeatherData';
 import { getSavedCoords, isCoordsValid } from '../utils';
 
-const mapStateToProps = () => {};
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = (dispatch) => ({
   setScreenSize: (arg) => dispatch(actions.setScreenSize(arg)),

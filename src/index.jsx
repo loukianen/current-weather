@@ -1,22 +1,17 @@
 import './css/style.css';
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
-import App from './app/components/App.jsx';
-import reducer from './app/reducers/index';
-import { initState } from './app/utils';
-
-// eslint-disable no-underscore-dangle
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-// eslint-enable
-
-const store = createStore(reducer, initState, composeEnhancers(applyMiddleware(thunk)));
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import StoreProvider from './app/components/StoreProvider.jsx';
 
 render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <Router>
+    <Routes>
+      <Route exact path="/" element={<StoreProvider />} />
+      <Route path="/desktop" element={<StoreProvider mode="desktop" />} />
+      <Route path="/mobile" element={<StoreProvider mode="mobile" />} />
+      <Route path="*" element={<StoreProvider />} />
+    </Routes>
+  </Router>,
   document.getElementById('main'),
 );

@@ -1,0 +1,70 @@
+.footer {
+  margin-top: 10%;
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1 1 auto;
+}
+
+.footer-wrap {
+  display: flex;
+}
+
+.footer-item {
+  width: 25%;
+  align-self: flex-start;
+  margin-bottom: 2%;
+}
+
+.weather-block-name {
+  mix-blend-mode: normal;
+  opacity: 0.6;
+  margin-bottom: 13px;
+}
+
+.weather-block-value {
+  font-size: 25px;
+  line-height: 30px;
+}
+
+.block-2 {
+  padding-left: 15px;
+}
+
+.block-3 {
+  padding-left: 35px;
+}
+
+.block-4 {
+  padding-left: 22.5px;
+}
+
+@media (max-width: 770px) {
+  .footer-item {
+    width: 50%;
+  }
+
+  .weather-block-value {
+    font-size: 18px;
+    line-height: 21.6px;
+    font-weight: 700;
+  }
+
+  .block-1 {
+    margin-bottom: 3px;
+    margin-left: -2px;
+    padding-left: 4px;
+  }
+
+  .block-2 {
+    margin-bottom: 3px;
+    margin-left: -2px;
+  }
+
+  .block-3 {
+    padding-left: 4px;
+  }
+
+  .block-4 {
+    padding-left: 15px;
+  }
+}

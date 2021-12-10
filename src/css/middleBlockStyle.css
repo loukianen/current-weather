@@ -1,0 +1,66 @@
+.description-font {
+  font-size: 25px;
+  line-height: 30px;
+}
+
+.temp-font {
+  font-size: 180px;
+  line-height: 216px;
+}
+
+.middle-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.main-block {
+  display: flex;
+  flex-grow: 2;
+  align-items: center;
+  justify-content: center;
+}
+
+.picture-size {
+  max-width: 208px;
+  max-height: 208px;
+}
+
+.weather-picture {
+  align-self: center;
+  padding-bottom: 3px;
+}
+
+.weather-desc {
+  min-height: 48px;
+  text-align: center;
+}
+
+.warning-text {
+  color: red;
+  background-color: white;
+  border-radius: 4px;
+}
+
+@media (max-width: 770px) {
+  .description-font {
+    font-size: 19px;
+    line-height: 22.6px;
+    font-weight: 300;
+  }
+
+  .temp-font {
+    font-size: 90px;
+    line-height: 108px;
+    font-weight: 300;
+  }
+
+  .middle-block {
+    margin-bottom: 16%;
+  }
+
+  .picture-size {
+    max-width: 113px;
+    max-height: 113px;
+  }
+}
