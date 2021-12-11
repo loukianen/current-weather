@@ -29,7 +29,7 @@ export const getVariants = ({ city, cityIds }, str) => {
 };
 
 export const getIconFileName = (iconId) => {
-  let chosenFileName = 'partly cloudy';
+  let chosenFileName = 'cloudy';
   if (iconMapping[iconId]) {
     chosenFileName = iconMapping[iconId];
   }

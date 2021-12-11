@@ -66,9 +66,8 @@ button {
 }
 
 .rectangle {
-  max-width: 1366px;
   height: calc(100% - 5px);
-  width: calc(100% - 5px);
+  width: 133vh;
   padding: 4.5%;
   background: var(--background-colour-desktop);
   border: 1px solid #979797;
@@ -95,6 +94,7 @@ button {
 
 @media (max-width: 770px) {
   .rectangle {
+    width: calc(100% - 5px);
     background: var(--background-colour-mobile);
   }
 }
