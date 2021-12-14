@@ -16,59 +16,48 @@ const mapDispatchToProps = (dispatch) => ({
   loadData: actions.loadData(dispatch),
 });
 
-class City extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleChangeClick = this.handleChangeClick.bind(this);
-    this.handleGeoClick = this.handleGeoClick.bind(this);
-  }
+const City = (props) => {
+  const { loadData, setAppMode, weatherData: { name: cityName } } = props;
 
-  handleChangeClick(e) {
-    const { setAppMode } = this.props;
+  const handleChangeClick = (e) => {
     e.stopPropagation();
     setAppMode('selection');
-  }
+  };
 
-  handleGeoClick(e) {
+  const handleGeoClick = (e) => {
     e.stopPropagation();
-    const { loadData, setAppMode } = this.props;
     navigator.geolocation.getCurrentPosition(({ coords }) => {
       const { latitude, longitude } = coords;
       refreshWeatherData({ lat: latitude, lon: longitude }, loadData);
     }, () => setAppMode('geolocation_failure'));
-  }
+  };
 
-  renderButtonBlock() {
-    return (
-      <div className="city-buttons-block">
-        <button className="city-button" type="button" onClick={this.handleChangeClick}>
-          Сменить город
-        </button>
-        <div>
-          <img className="arrow" src="img/location.png" alt="arrow" />
-        </div>
-        <button className="city-button" type="button" onClick={this.handleGeoClick}>
-          Мое местоположение
-        </button>
-      </div>
-    );
-  }
-
-  render() {
-    const { weatherData: { name: cityName } } = this.props;
-    return (
+  const renderButtonBlock = () => (
+    <div className="city-buttons-block">
+      <button className="city-button" type="button" onClick={handleChangeClick}>
+        Сменить город
+      </button>
       <div>
-        <div className="first-city-block">
-          <div className="city-name">
-            {cityName}
-          </div>
-          <MeasureUnitsSwitch />
-        </div>
-        {this.renderButtonBlock()}
+        <img className="arrow" src="img/location.png" alt="arrow" />
       </div>
-    );
-  }
-}
+      <button className="city-button" type="button" onClick={handleGeoClick}>
+        Мое местоположение
+      </button>
+    </div>
+  );
+
+  return (
+    <div>
+      <div className="first-city-block">
+        <div className="city-name">
+          {cityName}
+        </div>
+        <MeasureUnitsSwitch />
+      </div>
+      {renderButtonBlock()}
+    </div>
+  );
+};
 
 City.propTypes = {
   setAppMode: PropTypes.func.isRequired,

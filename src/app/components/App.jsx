@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
@@ -9,38 +9,29 @@ import { getSavedCoords, isCoordsValid } from '../utils';
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = (dispatch) => ({
+  setAppMode: (arg) => dispatch(actions.setAppMode(arg)),
   loadData: actions.loadData(dispatch),
 });
 
-class App extends React.Component {
-  componentDidMount() {
-    this.normalModeAppStart();
-  }
-
-  normalModeAppStart() {
-    const { loadData } = this.props;
+const App = (props) => {
+  useEffect(() => {
+    const { loadData, setAppMode } = props;
     const lastCoords = getSavedCoords();
     if (isCoordsValid(lastCoords)) {
       refreshWeatherData(lastCoords, loadData);
     } else {
-      this.refreshWeatherDataWithGeoposition();
+      navigator.geolocation.getCurrentPosition(({ coords }) => {
+        const { latitude, longitude } = coords;
+        refreshWeatherData({ lat: latitude, lon: longitude }, loadData);
+      }, () => setAppMode('geolocation_failure'));
     }
-  }
+  });
 
-  refreshWeatherDataWithGeoposition() {
-    const { loadData } = this.props;
-    navigator.geolocation.getCurrentPosition(({ coords }) => {
-      const { latitude, longitude } = coords;
-      refreshWeatherData({ lat: latitude, lon: longitude }, loadData);
-    });
-  }
-
-  render() {
-    return <RenderApp renderType="app" />;
-  }
-}
+  return <RenderApp renderType="app" />;
+};
 
 App.propTypes = {
+  setAppMode: PropTypes.func.isRequired,
   loadData: PropTypes.objectOf(PropTypes.func).isRequired,
 };
 
