@@ -76,6 +76,11 @@ button {
   color: #fff;
 }
 
+.template {
+  max-height: 1024px;
+  width: 1366px;
+}
+
 .info-area {
   display: flex;
   flex-direction: column;
@@ -96,6 +101,11 @@ button {
   .rectangle {
     width: calc(100% - 5px);
     background: var(--background-colour-mobile);
+  }
+
+  .template {
+    height: 669px;
+    width: 378px;
   }
 }
 

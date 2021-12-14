@@ -3,6 +3,7 @@ env:
   es2021: true
 extends:
   - 'plugin:react/recommended'
+  - 'plugin:react-hooks/recommended'
   - airbnb
 parserOptions:
   ecmaFeatures:
@@ -11,6 +12,7 @@ parserOptions:
   sourceType: module
 plugins:
   - react
+  - react-hooks
 rules: {
   import/extensions: [0, { js: "always" }],
   import/prefer-default-export: 0,

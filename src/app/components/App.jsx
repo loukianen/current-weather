@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
-import Header from './Header.jsx';
-import MiddleBlock from './MiddleBlock.jsx';
-import Footer from './Footer.jsx';
+import RenderApp from './RenderApp.jsx';
 import refreshWeatherData from '../refreshWeatherData';
 import { getSavedCoords, isCoordsValid } from '../utils';
 
@@ -17,12 +15,7 @@ const mapDispatchToProps = (dispatch) => ({
 class App extends React.Component {
   componentDidMount() {
     this.normalModeAppStart();
-    // this.screenTimerID = setInterval(this.checkScreenSize.bind(this), 500);
   }
-
-  // componentWillUnmount() {
-  //   clearInterval(this.screenTimerID);
-  // }
 
   normalModeAppStart() {
     const { loadData } = this.props;
@@ -42,29 +35,12 @@ class App extends React.Component {
     });
   }
 
-  // checkScreenSize() {
-  //   const { setScreenSize } = this.props;
-  //   const newSize = window.innerWidth <= 450 ? 'small' : 'desktop';
-  //   return Promise.resolve(setScreenSize(newSize));
-  // }
-
   render() {
-    return (
-      <div className="desktop">
-        <div className="rectangle">
-          <div className="info-area">
-            <Header />
-            <MiddleBlock />
-            <Footer />
-          </div>
-        </div>
-      </div>
-    );
+    return <RenderApp renderType="app" />;
   }
 }
 
 App.propTypes = {
-  // setScreenSize: PropTypes.func.isRequired,
   loadData: PropTypes.objectOf(PropTypes.func).isRequired,
 };
 
