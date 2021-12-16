@@ -9,7 +9,7 @@ import reducer from '../reducers/index';
 import { initState } from '../utils';
 
 // eslint-disable no-underscore-dangle
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = compose; // window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // eslint-enable
 
 const getStore = (mode) => {
