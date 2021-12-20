@@ -33,9 +33,9 @@ const MiddleBlock = (props) => {
     <div className="info-area-item middle-block">
       <div className="main-block">
         <img className="weather-picture picture-size" src={iconFileName} alt="weather" />
-        <div className="temp-font temp">{tempValue}</div>
+        <div className="temp-font temp" data-testid="temp">{tempValue}</div>
       </div>
-      <div className={descriptionClass}>
+      <div className={descriptionClass} data-testid="description">
         {getDescription(description, appMode)}
       </div>
     </div>

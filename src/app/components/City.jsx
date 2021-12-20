@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actions from '../actions/index';
-import refreshWeatherData from '../refreshWeatherData';
+import refreshWeatherDataByGeolocation from '../refreshWeatherDataByGeolocation';
 import MeasureUnitsSwitch from './MeasureUnitsSwitch.jsx';
 
 const mapStateToProps = (state) => {
@@ -26,10 +26,7 @@ const City = (props) => {
 
   const handleGeoClick = (e) => {
     e.stopPropagation();
-    navigator.geolocation.getCurrentPosition(({ coords }) => {
-      const { latitude, longitude } = coords;
-      refreshWeatherData({ lat: latitude, lon: longitude }, loadData);
-    }, () => setAppMode('geolocation_failure'));
+    refreshWeatherDataByGeolocation(loadData, setAppMode);
   };
 
   const renderButtonBlock = () => (
@@ -49,7 +46,7 @@ const City = (props) => {
   return (
     <div>
       <div className="first-city-block">
-        <div className="city-name">
+        <div className="city-name" data-testid="cityName">
           {cityName}
         </div>
         <MeasureUnitsSwitch />

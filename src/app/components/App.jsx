@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions/index';
 import RenderApp from './RenderApp.jsx';
 import refreshWeatherData from '../refreshWeatherData';
+import refreshWeatherDataByGeolocation from '../refreshWeatherDataByGeolocation';
 import { getSavedCoords, isCoordsValid } from '../utils';
 
 const mapStateToProps = () => ({});
@@ -20,10 +21,7 @@ const App = (props) => {
     if (isCoordsValid(lastCoords)) {
       refreshWeatherData(lastCoords, loadData);
     } else {
-      navigator.geolocation.getCurrentPosition(({ coords }) => {
-        const { latitude, longitude } = coords;
-        refreshWeatherData({ lat: latitude, lon: longitude }, loadData);
-      }, () => setAppMode('geolocation_failure'));
+      refreshWeatherDataByGeolocation(loadData, setAppMode);
     }
   });
 
