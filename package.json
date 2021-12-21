@@ -1,6 +1,6 @@
 {
   "name": "current-weather",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "app for get a current data of the weather",
   "main": "src/index.jsx",
   "engines": {
@@ -24,6 +24,7 @@
     "axios": "^0.21.1",
     "classnames": "^2.3.1",
     "dotenv": "^10.0.0",
+    "lodash": "^4.17.21",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -52,7 +53,6 @@
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "file-loader": "^6.2.0",
-    "history": "^5.2.0",
     "html-webpack-plugin": "^5.3.2",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.4.5",

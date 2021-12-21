@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+import { merge } from 'lodash';
 import App from './App.jsx';
 import ShowTemplate from './ShowTemplate.jsx';
 import reducer from '../reducers/index';
@@ -13,22 +14,20 @@ const composeEnhancers = compose; // window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
 // eslint-enable
 
 const getStore = (mode) => {
-  const currentState = { ...initState };
   const editStateMapping = {
-    desktop: () => {
-      currentState.weatherData.name = 'Омск';
-      currentState.weatherData.description = 'Преимущественно солнечно';
+    desktop: { weatherData: { name: 'Омск', description: 'Преимущественно солнечно' } },
+    mobile: {
+      weatherData: {
+        name: 'Омск',
+        temp: 14,
+        icon: '09d',
+        description: 'Дождь',
+      },
     },
-    mobile: () => {
-      currentState.weatherData.name = 'Омск';
-      currentState.weatherData.temp = 14;
-      currentState.weatherData.icon = '09d';
-      currentState.weatherData.description = 'Дождь';
-    },
+    default: {},
   };
-  if (editStateMapping[mode]) {
-    editStateMapping[mode]();
-  }
+  const stateUpdate = editStateMapping[mode] ? editStateMapping[mode] : editStateMapping.default;
+  const currentState = merge({}, initState, stateUpdate);
   return createStore(reducer, currentState, composeEnhancers(applyMiddleware(thunk)));
 };
 

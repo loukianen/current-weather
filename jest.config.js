@@ -3,5 +3,5 @@ module.exports = {
   moduleNameMapper: {
     '\\.(css|less)$': 'identity-obj-proxy',
   },
-  setupFilesAfterEnv: [`${__dirname}/__test__/index.test.jsx`],
+  setupFilesAfterEnv: [`${__dirname}/__test__/router.test.jsx`],
 };
