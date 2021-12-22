@@ -63,5 +63,6 @@ export const saveCoords = (coords) => {
 
 export const getSavedCoords = () => {
   const savedData = window.localStorage.getItem('currentWeatherCoords');
+  // console.log(savedData);
   return savedData !== null ? JSON.parse(savedData) : null;
 };

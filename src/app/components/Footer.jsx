@@ -29,7 +29,7 @@ const Footer = (props) => {
     <div key={blockName} className="footer-item">
       <div className={`block-${i + 1}`}>
         <div className="weather-block-name">{blockName}</div>
-        <div className="weather-block-value">{value}</div>
+        <div className="weather-block-value" data-testid={`block-${i + 1}`}>{value}</div>
       </div>
     </div>
   ));

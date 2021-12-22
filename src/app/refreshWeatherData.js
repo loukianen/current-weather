@@ -2,6 +2,8 @@ import axios from 'axios';
 import getWeatherApiToken from '../sources/getWeatherApiToken';
 import { saveCoords, getSavedCoords, transformPressureUnits } from './utils';
 
+// axios.defaults.adapter = require('axios/lib/adapters/http');
+
 const apiConfig = {
   apiTypes: { current: 'weather', hourly: 'onecall', byCityName: 'weather' },
   baseUrl: 'https://api.openweathermap.org/data/2.5',
@@ -41,6 +43,8 @@ const roundValues = (values) => {
 };
 
 const processCurrentResponse = (response) => {
+  // console.log('Process current response');
+  // console.log(response);
   const {
     name, coord, weather,
     main: { temp, pressure: presHPa, humidity },
@@ -60,6 +64,8 @@ const processCurrentResponse = (response) => {
 };
 
 const processHourlyResponse = (response) => {
+  // console.log('hurly response');
+  // console.log(response);
   const { pop } = response.data.hourly[0];
   const roundedPop = roundValues({ pop: pop * 100 });
   return roundedPop;
@@ -78,11 +84,21 @@ const getQuery = (id, type, queryData) => {
 const getWeatherData = (requestData, type, callBack) => {
   const { baseUrl, apiTypes, appId } = apiConfig;
   const query = getQuery(appId, type, requestData);
-  return axios.get(`${baseUrl}/${apiTypes[type]}?${query}`).then(callBack);
+  // console.log(`${baseUrl}/${apiTypes[type]}?${query}`);
+  return axios.get(`${baseUrl}/${apiTypes[type]}?${query}`).then((data) => {
+    // console.log('axios res');
+    // console.log(data);
+    return callBack(data);
+  }).catch((e) => {
+    // console.log('Error from refresh');
+    console.error(e);
+  });
 };
 
 export default (args, setStateFunctions) => {
   const { makeRequest, processSuccessfulAnswer, processFailedAnswer } = setStateFunctions;
+  // console.log('Args from refresh func:');
+  // console.log(args);
   makeRequest();
   if (typeof args === 'string') {
     getWeatherData({ cityName: args }, 'byCityName', processCurrentResponse)
@@ -95,12 +111,21 @@ export default (args, setStateFunctions) => {
       })
       .catch(() => processFailedAnswer());
   } else {
+    // console.log("I'm in right branch");
     getWeatherData(args, 'current', processCurrentResponse)
-      .then((stateData) => processSuccessfulAnswer({ ...stateData }))
+      .then((stateData) => {
+        console.log('stateData');
+        console.log(stateData);
+        processSuccessfulAnswer({ ...stateData });
+      })
       .catch(() => processFailedAnswer());
 
     getWeatherData(args, 'hourly', processHourlyResponse)
-      .then((stateData) => processSuccessfulAnswer({ ...stateData }))
+      .then((stateData) => {
+        console.log('stateData hurly');
+        console.log(stateData);
+        processSuccessfulAnswer({ ...stateData });
+      })
       .catch(() => processFailedAnswer());
   }
 };

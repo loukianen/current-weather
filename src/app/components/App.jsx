@@ -18,7 +18,7 @@ const App = (props) => {
   useEffect(() => {
     const { loadData, setAppMode } = props;
     const lastCoords = getSavedCoords();
-    console.log(`Is local storage aviable: ${console.log(window.localStorage)}`);
+    // console.log(`Is local storage aviable: ${lastCoords}`);
     if (isCoordsValid(lastCoords)) {
       refreshWeatherData(lastCoords, loadData);
     } else {

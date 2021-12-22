@@ -3,5 +3,7 @@ module.exports = {
   moduleNameMapper: {
     '\\.(css|less)$': 'identity-obj-proxy',
   },
-  setupFilesAfterEnv: [`${__dirname}/__test__/router.test.jsx`],
+  testPathIgnorePatterns: ['/__test__/done'],
+  verbose: true,
+  testURL: 'http://localhost/',
 };
