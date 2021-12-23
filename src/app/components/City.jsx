@@ -31,28 +31,28 @@ const City = (props) => {
 
   const renderButtonBlock = () => (
     <div className="city-buttons-block">
-      <button className="city-button" type="button" onClick={handleChangeClick}>
+      <button className="city-button" type="button" onClick={handleChangeClick} data-testid="change-city-btn">
         Сменить город
       </button>
       <div>
         <img className="arrow" src="img/location.png" alt="arrow" />
       </div>
-      <button className="city-button" type="button" onClick={handleGeoClick}>
+      <button className="city-button" type="button" onClick={handleGeoClick} data-testid="get-geo-btn">
         Мое местоположение
       </button>
     </div>
   );
 
   return (
-    <div>
-      <div className="first-city-block">
+    <>
+      <div className="first-city-block" data-testid="city">
         <div className="city-name" data-testid="cityName">
           {cityName}
         </div>
         <MeasureUnitsSwitch />
       </div>
       {renderButtonBlock()}
-    </div>
+    </>
   );
 };
 

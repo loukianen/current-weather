@@ -37,13 +37,13 @@ const MeasureUnitsSwitch = (props) => {
   };
 
   return (
-    <div className="measure-units-switch">
+    <div className="measure-units-switch" data-testid="measure-block">
       <div className="degrees-simbol">°</div>
       <div className="degrees-buttons-block">
-        <button className={blockClassC} type="button" onClick={handleClick} disabled={isCelsius}>
+        <button className={blockClassC} data-testid="button-c" type="button" onClick={handleClick} disabled={isCelsius}>
           <div className={letterClassC}>C</div>
         </button>
-        <button className={blockClassF} type="button" onClick={handleClick} disabled={!isCelsius}>
+        <button className={blockClassF} data-testid="button-f" type="button" onClick={handleClick} disabled={!isCelsius}>
           <div className={letterClassF}>F</div>
         </button>
       </div>

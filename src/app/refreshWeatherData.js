@@ -8,10 +8,7 @@ const apiConfig = {
   appId: getWeatherApiToken(),
 };
 
-
 const processCurrentResponse = (response) => {
-  // console.log('Process current response');
-  // console.log(response);
   const {
     name, coord, weather,
     main: { temp, pressure: presHPa, humidity },
@@ -31,8 +28,6 @@ const processCurrentResponse = (response) => {
 };
 
 const processHourlyResponse = (response) => {
-  // console.log('hurly response');
-  // console.log(response);
   const { pop } = response.data.hourly[0];
   const roundedPop = utils.roundValues({ pop: pop * 100 });
   return roundedPop;
@@ -51,21 +46,11 @@ const getQuery = (id, type, queryData) => {
 const getWeatherData = (requestData, type, callBack) => {
   const { baseUrl, apiTypes, appId } = apiConfig;
   const query = getQuery(appId, type, requestData);
-  // console.log(`${baseUrl}/${apiTypes[type]}?${query}`);
-  return axios.get(`${baseUrl}/${apiTypes[type]}?${query}`).then((data) => {
-    // console.log('axios res');
-    // console.log(data);
-    return callBack(data);
-  }).catch((e) => {
-    // console.log('Error from refresh');
-    console.error(e);
-  });
+  return axios.get(`${baseUrl}/${apiTypes[type]}?${query}`).then(callBack);
 };
 
 export default (args, setStateFunctions) => {
   const { makeRequest, processSuccessfulAnswer, processFailedAnswer } = setStateFunctions;
-  // console.log('Args from refresh func:');
-  // console.log(args);
   makeRequest();
   if (typeof args === 'string') {
     getWeatherData({ cityName: args }, 'byCityName', processCurrentResponse)
@@ -78,21 +63,12 @@ export default (args, setStateFunctions) => {
       })
       .catch(() => processFailedAnswer());
   } else {
-    // console.log("I'm in right branch");
     getWeatherData(args, 'current', processCurrentResponse)
-      .then((stateData) => {
-        console.log('stateData');
-        console.log(stateData);
-        processSuccessfulAnswer({ ...stateData });
-      })
+      .then((stateData) => processSuccessfulAnswer({ ...stateData }))
       .catch(() => processFailedAnswer());
 
     getWeatherData(args, 'hourly', processHourlyResponse)
-      .then((stateData) => {
-        console.log('stateData hurly');
-        console.log(stateData);
-        processSuccessfulAnswer({ ...stateData });
-      })
+      .then((stateData) => processSuccessfulAnswer({ ...stateData }))
       .catch(() => processFailedAnswer());
   }
 };

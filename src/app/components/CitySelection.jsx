@@ -115,6 +115,7 @@ const CitySelection = (props) => {
       <div className="input-city-name-block">
         <input
           className="input-city-name"
+          type="text"
           name="city"
           value={text}
           autoComplete="off"
@@ -129,7 +130,7 @@ const CitySelection = (props) => {
   /* eslint-enable jsx-a11y/no-autofocus */
 
   return (
-    <div className="container-wrap">
+    <div className="container-wrap" data-testid="city-selection">
       <div className="city-select-container">
         {renderForm()}
         <div className="variants">
