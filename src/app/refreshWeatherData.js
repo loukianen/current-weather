@@ -1,8 +1,6 @@
 import axios from 'axios';
 import getWeatherApiToken from '../sources/getWeatherApiToken';
-import { saveCoords, getSavedCoords, transformPressureUnits } from './utils';
-
-// axios.defaults.adapter = require('axios/lib/adapters/http');
+import * as utils from './utils';
 
 const apiConfig = {
   apiTypes: { current: 'weather', hourly: 'onecall', byCityName: 'weather' },
@@ -10,37 +8,6 @@ const apiConfig = {
   appId: getWeatherApiToken(),
 };
 
-const getWindDirection = (value) => {
-  const windMapping = {
-    северный: [[0, 23], [338, 361]],
-    'северо-восточный': [[23, 68]],
-    восточный: [[68, 113]],
-    'юго-восточный': [[113, 158]],
-    южный: [[158, 203]],
-    'юго-западный': [[203, 248]],
-    западный: [[248, 293]],
-    'северо-западный': [[293, 338]],
-  };
-  let direction = null;
-  Object.keys(windMapping)
-    .every((wind) => windMapping[wind]
-      .every((range) => {
-        const [beginig, end] = range;
-        if (value >= beginig && value < end) {
-          direction = wind;
-          return false;
-        }
-        return true;
-      }));
-  return direction;
-};
-
-const roundValues = (values) => {
-  const valuesName = Object.keys(values);
-  const newPairs = valuesName.map((item) => [item, Math.round(values[item])]);
-  const roundedValues = Object.fromEntries(newPairs);
-  return roundedValues;
-};
 
 const processCurrentResponse = (response) => {
   // console.log('Process current response');
@@ -50,11 +17,11 @@ const processCurrentResponse = (response) => {
     main: { temp, pressure: presHPa, humidity },
     wind: { speed, deg },
   } = response.data;
-  saveCoords(coord);
-  const pressure = transformPressureUnits(presHPa);
+  utils.saveCoords(coord);
+  const pressure = utils.transformPressureUnits(presHPa);
   const { icon, description } = weather[0];
-  const direction = getWindDirection(deg);
-  const roundedValues = roundValues({
+  const direction = utils.getWindDirection(deg);
+  const roundedValues = utils.roundValues({
     temp, pressure, humidity, speed,
   });
   const processedData = {
@@ -67,7 +34,7 @@ const processHourlyResponse = (response) => {
   // console.log('hurly response');
   // console.log(response);
   const { pop } = response.data.hourly[0];
-  const roundedPop = roundValues({ pop: pop * 100 });
+  const roundedPop = utils.roundValues({ pop: pop * 100 });
   return roundedPop;
 };
 
@@ -104,7 +71,7 @@ export default (args, setStateFunctions) => {
     getWeatherData({ cityName: args }, 'byCityName', processCurrentResponse)
       .then((stateData) => {
         processSuccessfulAnswer({ ...stateData });
-        const coords = getSavedCoords();
+        const coords = utils.getSavedCoords();
         getWeatherData(coords, 'hourly', processHourlyResponse)
           .then((hourlyData) => processSuccessfulAnswer({ ...hourlyData }))
           .catch(() => processFailedAnswer());

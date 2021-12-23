@@ -1,4 +1,4 @@
-export const localStorageData = '{"lat":"55.7522","lon":"37.6156"}';
+export const localStorageData = { lat: 55.7522, lon: 37.6156 };
 
 export const geolocationData = { coords: { latitude: 50.8047, longitude: 42.0138 } };
 
@@ -30,14 +30,14 @@ export const moscowCurWeatherData = {
   name: 'Москва',
   main: {
     humidity: 99,
-    pressure: 1016,
+    pressure: 1026,
     temp: -22.12,
   },
   weather: [
     {
       id: 804,
       main: 'Clouds',
-      description: 'пасмурно',
+      description: 'переменная облачность',
       icon: '04d',
     },
   ],
@@ -45,5 +45,27 @@ export const moscowCurWeatherData = {
 };
 
 export const moscowHurlyWeatherData = {
-  hourly: [{ pop: 0 }],
+  hourly: [{ pop: 0.03 }],
+};
+export const startPageCurWeatherData = {
+  coord: null,
+  name: 'Выберите город',
+  main: {
+    humidity: 60,
+    pressure: 1003,
+    temp: 19,
+  },
+  weather: [
+    {
+      id: 1,
+      main: 'Sun',
+      description: 'Не удалось определить местоположение',
+      icon: '01d',
+    },
+  ],
+  wind: { deg: 287, speed: 5 },
+};
+
+export const startPageHurlyWeatherData = {
+  hourly: [{ pop: 0.1 }],
 };

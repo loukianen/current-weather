@@ -28,6 +28,31 @@ export const getVariants = ({ city, cityIds }, str) => {
   return variants;
 };
 
+export const getWindDirection = (value) => {
+  const windMapping = {
+    северный: [[0, 23], [338, 361]],
+    'северо-восточный': [[23, 68]],
+    восточный: [[68, 113]],
+    'юго-восточный': [[113, 158]],
+    южный: [[158, 203]],
+    'юго-западный': [[203, 248]],
+    западный: [[248, 293]],
+    'северо-западный': [[293, 338]],
+  };
+  let direction = null;
+  Object.keys(windMapping)
+    .every((wind) => windMapping[wind]
+      .every((range) => {
+        const [beginig, end] = range;
+        if (value >= beginig && value < end) {
+          direction = wind;
+          return false;
+        }
+        return true;
+      }));
+  return direction;
+};
+
 export const getIconFileName = (iconId) => {
   let chosenFileName = 'cloudy';
   if (iconMapping[iconId]) {
@@ -44,6 +69,13 @@ export const isCoordsValid = (coords) => {
     return isLatitudeValid && isLongitudeValide;
   }
   return false;
+};
+
+export const roundValues = (values) => {
+  const valuesName = Object.keys(values);
+  const newPairs = valuesName.map((item) => [item, Math.round(values[item])]);
+  const roundedValues = Object.fromEntries(newPairs);
+  return roundedValues;
 };
 
 export const transformDegrees = (celsiusDegrees) => {
