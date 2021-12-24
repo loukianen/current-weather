@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import AppRouter from '../src/app/components/AppRouter.jsx';
 
-describe('React Router', () => {
+describe('AppRouter', () => {
   it('should render start page', () => {
     render(<AppRouter />);
     expect(screen.getByText(/выберите город/i)).toBeInTheDocument();

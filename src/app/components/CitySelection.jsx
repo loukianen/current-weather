@@ -5,10 +5,8 @@ import { connect } from 'react-redux';
 import * as actions from '../actions/index';
 import refreshWeatherData from '../refreshWeatherData';
 import { getVariants } from '../utils';
-import getCityData from '../../sources/getCityData';
 import MeasureUnitsSwitch from './MeasureUnitsSwitch.jsx';
 
-const { ids: cityIds, city } = getCityData();
 const maxVariantsInList = 7;
 
 const setFocusOnElement = (selector) => {
@@ -24,9 +22,10 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const CitySelection = (props) => {
-  const { setAppMode, loadData } = props;
+  const { setAppMode, loadData, getCityData } = props;
   const [text, setText] = useState('');
   const [variants, setVariants] = useState([]);
+  const { ids: cityIds, city } = getCityData();
   let chosenCityId = null;
 
   const handleChangeText = (e) => {
@@ -101,6 +100,7 @@ const CitySelection = (props) => {
         role="button"
         className="var-button"
         tabIndex="-1"
+        data-testid="city-variant"
         onClick={choseCity({ id, cityName })}
         onKeyDown={handlePressKeyOnList({ id, cityName })}
       >
@@ -147,6 +147,7 @@ const CitySelection = (props) => {
 CitySelection.propTypes = {
   setAppMode: PropTypes.func.isRequired,
   loadData: PropTypes.objectOf(PropTypes.func).isRequired,
+  getCityData: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CitySelection);

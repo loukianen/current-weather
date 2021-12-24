@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import getCityData from '../../sources/getCityData';
 import City from './City.jsx';
 import CitySelection from './CitySelection.jsx';
 
@@ -13,7 +14,7 @@ const Header = (props) => {
   const { appMode } = props;
   return (
     <div className="info-area-item">
-      {appMode === 'selection' ? <CitySelection /> : <City />}
+      {appMode === 'selection' ? <CitySelection getCityData={getCityData} /> : <City />}
     </div>
   );
 };
