@@ -22,35 +22,43 @@ const renderWithRedux = (
 
 const url = new URL('https://api.openweathermap.org/data/2.5');
 
+let customeStorage = {};
+
 const getScope = (content, apiType) => nock(url.origin)
   .get(`${url.pathname}/${apiType}`)
   .query(() => true)
   .reply(200, content, { 'Access-Control-Allow-Origin': '*' });
 
-describe('App', () => {
-  let customeStorage = {};
+const doBeforeTest = () => {
+  Object.defineProperty(window, 'localStorage', {
+    value: {
+      getItem: jest.fn((key) => customeStorage[key] || null),
+      setItem: jest.fn((key, value) => {
+        customeStorage[key] = JSON.stringify(value);
+      }),
+      removeItem: jest.fn((key) => {
+        customeStorage = omit(customeStorage, key);
+      }),
+    },
+    writable: true,
+  });
+  navigator.geolocation = null;
+};
 
+const doAfterTest = () => {
+  nock.cleanAll();
+  jest.clearAllMocks();
+  customeStorage = {};
+  navigator.geolocation = null;
+};
+
+describe('App. Check StoreProvider', () => {
   beforeEach(() => {
-    Object.defineProperty(window, 'localStorage', {
-      value: {
-        getItem: jest.fn((key) => customeStorage[key] || null),
-        setItem: jest.fn((key, value) => {
-          customeStorage[key] = JSON.stringify(value);
-        }),
-        removeItem: jest.fn((key) => {
-          customeStorage = omit(customeStorage, key);
-        }),
-      },
-      writable: true,
-    });
-    navigator.geolocation = null;
+    doBeforeTest();
   });
 
   afterEach(() => {
-    nock.cleanAll();
-    jest.clearAllMocks();
-    customeStorage = {};
-    navigator.geolocation = null;
+    doAfterTest();
   });
 
   it('should render page with geolocation data', async () => {
@@ -120,7 +128,16 @@ describe('App', () => {
     expect(scope1.isDone()).toBeFalsy();
     expect(scope2.isDone()).toBeFalsy();
   });
+});
 
+describe('App. Check buttons.', () => {
+  beforeEach(() => {
+    doBeforeTest();
+  });
+
+  afterEach(() => {
+    doAfterTest();
+  });
   it('check right working "My geoposition" button', async () => {
     renderWithRedux(<App />, { state: initState });
 
@@ -161,8 +178,18 @@ describe('App', () => {
     expect(screen.getByTestId('measure-block')).toBeInTheDocument();
     expect(screen.queryByTestId('city-selection')).not.toBeInTheDocument();
   });
+});
 
-  it('MeasureUnitsSwitch should render temperature value depend a degrees type', async () => {
+describe('App. Check MeasureUnitsSwitch', () => {
+  beforeEach(() => {
+    doBeforeTest();
+  });
+
+  afterEach(() => {
+    doAfterTest();
+  });
+
+  it('should render temperature value depend a degrees type', async () => {
     renderWithRedux(<App />, { state: initState });
     // checking after first render
     await waitFor(() => expect(screen.getByTestId('measure-block')).toBeInTheDocument());
@@ -192,5 +219,119 @@ describe('App', () => {
     await waitFor(() => expect(screen.getByTestId('button-f')).toBeEnabled());
     await waitFor(() => expect(screen.getByTestId('button-c')).toHaveClass('active-button'));
     await waitFor(() => expect(screen.getByTestId('button-f')).toHaveClass('not-active-button'));
+  });
+});
+
+describe('App. Check loading data', () => {
+  beforeEach(() => {
+    doBeforeTest();
+  });
+
+  afterEach(() => {
+    doAfterTest();
+  });
+  it('with chosen city name', async () => {
+    const contentForFirstRequest = {
+      firstPart: fakeData.urupinskCurWeatherData,
+      secondPart: fakeData.urupinskHurlyWeatherData,
+    };
+    const contentForSecondRequest = {
+      firstPart: fakeData.moscowCurWeatherData,
+      secondPart: fakeData.moscowHurlyWeatherData,
+    };
+
+    const scope11 = getScope(contentForFirstRequest.firstPart, 'weather');
+    const scope12 = getScope(contentForFirstRequest.secondPart, 'onecall');
+    const scope21 = nock(url.origin)
+      .get(`${url.pathname}/weather`)
+      .query((queryParts) => (queryParts.lat === '55.753215' && queryParts.lon === '37.622504'))
+      .reply(200, contentForSecondRequest.firstPart, { 'Access-Control-Allow-Origin': '*' });
+    const scope22 = getScope(contentForSecondRequest.secondPart, 'onecall');
+
+    window.localStorage.setItem('currentWeatherCoords', fakeData.localStorageData);
+
+    renderWithRedux(<App />, { state: initState });
+
+    userEvent.click(screen.getByTestId('change-city-btn'));
+    userEvent.type(screen.getByRole('textbox'), 'москва');
+    userEvent.keyboard('{arrowdown}');
+    userEvent.keyboard('{enter}');
+    userEvent.keyboard('{arrowup}');
+    userEvent.keyboard('{enter}');
+
+    await waitFor(() => expect(screen.getByTestId('cityName')).toHaveTextContent('Москва'));
+
+    expect(scope11.isDone()).toBeTruthy();
+    expect(scope12.isDone()).toBeTruthy();
+    expect(scope21.isDone()).toBeTruthy();
+    expect(scope22.isDone()).toBeTruthy();
+  });
+
+  it('with inputted city name', async () => {
+    const contentForFirstRequest = {
+      firstPart: fakeData.urupinskCurWeatherData,
+      secondPart: fakeData.urupinskHurlyWeatherData,
+    };
+    const contentForSecondRequest = {
+      firstPart: { ...fakeData.moscowCurWeatherData, name: 'Moscow' },
+      secondPart: fakeData.moscowHurlyWeatherData,
+    };
+
+    const scope11 = getScope(contentForFirstRequest.firstPart, 'weather');
+    const scope12 = getScope(contentForFirstRequest.secondPart, 'onecall');
+    const scope21 = nock(url.origin)
+      .get(`${url.pathname}/weather`)
+      .query((queryParts) => (queryParts.q === 'moscow'))
+      .reply(200, contentForSecondRequest.firstPart, { 'Access-Control-Allow-Origin': '*' });
+    const scope22 = getScope(contentForSecondRequest.secondPart, 'onecall');
+
+    window.localStorage.setItem('currentWeatherCoords', fakeData.localStorageData);
+
+    renderWithRedux(<App />, { state: initState });
+
+    userEvent.click(screen.getByTestId('change-city-btn'));
+    userEvent.type(screen.getByRole('textbox'), 'moscow');
+    expect(screen.queryAllByTestId('city-variant').length).toBe(0);
+
+    userEvent.keyboard('{enter}');
+
+    await waitFor(() => expect(screen.getByTestId('cityName')).toHaveTextContent('Moscow'));
+
+    expect(scope11.isDone()).toBeTruthy();
+    expect(scope12.isDone()).toBeTruthy();
+    expect(scope21.isDone()).toBeTruthy();
+    expect(scope22.isDone()).toBeTruthy();
+  });
+
+  it('with unacceptable city name', async () => {
+    const content = {
+      firstPart: fakeData.urupinskCurWeatherData,
+      secondPart: fakeData.urupinskHurlyWeatherData,
+    };
+
+    const scope1 = getScope(content.firstPart, 'weather');
+    const scope2 = getScope(content.secondPart, 'onecall');
+    const scope3 = nock(url.origin)
+      .get(`${url.pathname}/weather`)
+      .query(() => true)
+      .reply(500, undefined, { 'Access-Control-Allow-Origin': '*' });
+
+    window.localStorage.setItem('currentWeatherCoords', fakeData.localStorageData);
+
+    renderWithRedux(<App />, { state: initState });
+
+    userEvent.click(screen.getByTestId('change-city-btn'));
+    userEvent.type(screen.getByRole('textbox'), 'fgfgfgfgfgf');
+    expect(screen.queryAllByTestId('city-variant').length).toBe(0);
+
+    userEvent.keyboard('{enter}');
+
+    await waitFor(() => expect(screen.getByTestId('cityName')).toHaveTextContent('Урюпинск'));
+    await waitFor(() => expect(screen.getByTestId('description'))
+      .toHaveTextContent('Не удалось загрузить данные'));
+
+    expect(scope1.isDone()).toBeTruthy();
+    expect(scope2.isDone()).toBeTruthy();
+    expect(scope3.isDone()).toBeTruthy();
   });
 });

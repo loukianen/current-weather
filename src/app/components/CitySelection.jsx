@@ -25,13 +25,13 @@ const CitySelection = (props) => {
   const { setAppMode, loadData, getCityData } = props;
   const [text, setText] = useState('');
   const [variants, setVariants] = useState([]);
+  const [chosenCityId, setChosenCityId] = useState(null);
   const { ids: cityIds, city } = getCityData();
-  let chosenCityId = null;
 
   const handleChangeText = (e) => {
     e.preventDefault();
     const newText = e.target.value;
-    chosenCityId = null;
+    setChosenCityId(null);
     setVariants(getVariants({ cityIds, city }, newText));
     setText(newText);
   };
@@ -45,8 +45,9 @@ const CitySelection = (props) => {
     if (chosenCityId !== null) {
       const { latitude, longitude } = city[chosenCityId];
       refreshWeatherData({ lat: latitude, lon: longitude }, loadData);
+    } else {
+      refreshWeatherData(text, loadData);
     }
-    refreshWeatherData(text, loadData);
   };
 
   const handlePressKeyOnList = ({ id, cityName }) => (e) => {
@@ -55,7 +56,7 @@ const CitySelection = (props) => {
       setAppMode('show');
     }
     if (key === 'Enter') {
-      chosenCityId = id;
+      setChosenCityId(id);
       setText(cityName);
     }
     if (key === 'ArrowDown') {
@@ -84,7 +85,7 @@ const CitySelection = (props) => {
 
   const choseCity = ({ id, cityName }) => (e) => {
     e.stopPropagation();
-    chosenCityId = id;
+    setChosenCityId(id);
     setFocusOnElement('input');
     setText(cityName);
   };
