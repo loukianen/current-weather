@@ -26,6 +26,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
+    - run: echo "${{ env.WEATHER_API_TOKEN }}!"
     - run: npm run build --if-present
     - name: Test & publish code coverage
       # Publish code coverage on Code Climate
