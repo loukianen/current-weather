@@ -14,15 +14,17 @@ describe('AppRouter', () => {
     window.history.replaceState({}, undefined, '/desktop');
     render(<AppRouter />);
     expect(screen.queryByText(/выберите город/i)).not.toBeInTheDocument();
-    expect(screen.getByTestId('cityName').innerHTML).toBe('Омск');
-    expect(screen.getByTestId('temp').innerHTML).toBe('19°');
-    expect(screen.getByTestId('description').innerHTML).toBe('Преимущественно солнечно');
+    expect(screen.getByTestId('cityName')).toHaveTextContent('Омск');
+    expect(screen.getByTestId('weather-icon')).toHaveAttribute('src', 'img/day_clear.png');
+    expect(screen.getByTestId('temp')).toHaveTextContent('19°');
+    expect(screen.getByTestId('description')).toHaveTextContent('Преимущественно солнечно');
   });
   it('should render mobile page', () => {
     window.history.replaceState({}, undefined, '/mobile');
     render(<AppRouter />);
-    expect(screen.getByTestId('temp').innerHTML).toBe('14°');
-    expect(screen.getByTestId('description').innerHTML).toBe('Дождь');
+    expect(screen.getByTestId('weather-icon')).toHaveAttribute('src', 'img/rain.png');
+    expect(screen.getByTestId('temp')).toHaveTextContent('14°');
+    expect(screen.getByTestId('description')).toHaveTextContent('Дождь');
   });
 
   it('should render start page second time', () => {

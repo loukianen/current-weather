@@ -32,7 +32,7 @@ const MiddleBlock = (props) => {
   return (
     <div className="info-area-item middle-block">
       <div className="main-block">
-        <img className="weather-picture picture-size" src={iconFileName} alt="weather" />
+        <img className="weather-picture picture-size" src={iconFileName} alt="weather" data-testid="weather-icon" />
         <div className="temp-font temp" data-testid="temp">{tempValue}</div>
       </div>
       <div className={descriptionClass} data-testid="description">
