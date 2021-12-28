@@ -7,6 +7,7 @@ try {
     dotenv.config();
   }
   const token = process.env.WEATHER_API_TOKEN;
+  console.log(process.env);
   if (!token) {
     throw new Error();
   }
