@@ -2,10 +2,17 @@ import axios from 'axios';
 import getWeatherApiToken from '../sources/getWeatherApiToken';
 import * as utils from './utils';
 
+const getAppId = () => {
+  if (!window.process) {
+    return getWeatherApiToken();
+  }
+  return process.env.WEATHER_API_TOKEN ?? getWeatherApiToken();
+};
+
 const apiConfig = {
   apiTypes: { current: 'weather', hourly: 'onecall', byCityName: 'weather' },
   baseUrl: 'https://api.openweathermap.org/data/2.5',
-  appId: getWeatherApiToken(),
+  appId: getAppId(),
 };
 
 const processCurrentResponse = (response) => {
