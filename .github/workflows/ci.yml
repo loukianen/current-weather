@@ -39,8 +39,6 @@ jobs:
       with:
         coverageCommand: npm run-script test
         debug: true
-    - name: Make test
-      run: npm run-script test
 
     - name: Run linter
       run: |
