@@ -37,7 +37,7 @@ jobs:
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       with:
-        coverageCommand: npm run-script test --coverage
+        coverageCommand: npm run-script test --coverage --coverageProvider=v8
         debug: true
 
     - name: Run linter
