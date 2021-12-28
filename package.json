@@ -9,10 +9,9 @@
   "scripts": {
     "lint": "npx eslint . --ext jsx --ext js",
     "lintcss": "npx stylelint 'src/css/*.css'",
-    "start": "node ./src/setWeatherToken.js && webpack serve --mode development",
-    "removeToken": "node ./src/unsetWeatherToken.js",
+    "start": "webpack serve --mode development",
     "test": "npx jest",
-    "build": "node ./src/setWeatherToken.js && webpack --mode production"
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
