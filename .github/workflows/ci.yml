@@ -33,11 +33,11 @@ jobs:
         npm run-script build --if-present
 
     - name: Test & publish code coverage
-      uses: paambaati/codeclimate-action@v3.0.0
+      uses: paambaati/codeclimate-action@v2.6.0
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       with:
-        coverageCommand: npm run-script test -- --coverage --coverageProvider=v8
+        coverageCommand: npm test -- --coverage --coverageProvider=v8
         debug: true
 
     - name: Run linter
