@@ -1,4 +1,4 @@
-name: NodeJS with Webpack
+name: NodeJS tests linter
 
 on:
   push:
@@ -31,7 +31,6 @@ jobs:
 
     - name: Build
       run: |
-        echo "WEATHER_API_TOKEN=${WEATHER_API_TOKEN}"
         npm install
         npm run-script build --if-present
     - name: Make test
