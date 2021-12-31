@@ -52,24 +52,27 @@ const CitySelection = (props) => {
 
   const handlePressKeyOnList = ({ id, cityName }) => (e) => {
     const { target, key } = e;
-    if (key === 'Escape') {
-      setAppMode('show');
-    }
-    if (key === 'Enter') {
-      setChosenCityId(id);
-      setText(cityName);
-    }
-    if (key === 'ArrowDown') {
-      if (target.nextSibling) {
-        target.nextSibling.focus();
-      }
-    }
-    if (key === 'ArrowUp') {
-      if (target.previousSibling) {
-        target.previousSibling.focus();
-      } else {
-        setFocusOnElement('input');
-      }
+    const keyHandlers = {
+      Enter: () => {
+        setChosenCityId(id);
+        setText(cityName);
+      },
+      Escape: () => setAppMode('show'),
+      ArrowDown: () => {
+        if (target.nextSibling) {
+          target.nextSibling.focus();
+        }
+      },
+      ArrowUp: () => {
+        if (target.previousSibling) {
+          target.previousSibling.focus();
+        } else {
+          setFocusOnElement('input');
+        }
+      },
+    };
+    if (keyHandlers[key]) {
+      keyHandlers[key]();
     }
   };
 
