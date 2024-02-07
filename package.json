@@ -10,6 +10,7 @@
     "lint": "npx eslint . --ext jsx --ext js",
     "lintcss": "npx stylelint 'src/css/*.css'",
     "start": "webpack serve --mode development",
+    "start:express": "node src/server/index.cjs",
     "test": "npx jest",
     "build": "webpack --mode production"
   },
@@ -23,8 +24,10 @@
     "axios": "^0.21.1",
     "classnames": "^2.3.1",
     "dotenv": "^10.0.0",
+    "express": "^4.18.2",
     "lodash": "^4.17.21",
     "prop-types": "^15.7.2",
+    "qs": "^6.11.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.4",

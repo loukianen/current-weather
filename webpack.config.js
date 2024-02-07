@@ -1,11 +1,7 @@
 const path = require('path');
-const dotenv = require('dotenv');
-const { EnvironmentPlugin } = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-
-dotenv.config();
 
 module.exports = {
   entry: path.join(__dirname, 'src', 'index.jsx'),
@@ -25,9 +21,6 @@ module.exports = {
       patterns: [
         { from: 'src/img', to: 'img' },
       ],
-    }),
-    new EnvironmentPlugin({
-      WEATHER_API_TOKEN: process.env.WEATHER_API_TOKEN,
     }),
   ],
 

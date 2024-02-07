@@ -3,8 +3,8 @@ import * as utils from './utils';
 
 const apiConfig = {
   apiTypes: { current: 'weather', hourly: 'onecall', byCityName: 'weather' },
-  baseUrl: 'https://api.openweathermap.org/data/2.5',
-  appId: process.env.WEATHER_API_TOKEN,
+  baseUrl: '/pull_data',
+  appId: '',
 };
 
 const processCurrentResponse = (response) => {
@@ -54,6 +54,7 @@ export default (args, setStateFunctions) => {
   if (typeof args === 'string') {
     getWeatherData({ cityName: args }, 'byCityName', processCurrentResponse)
       .then((stateData) => {
+        console.log('stateData', stateData);
         processSuccessfulAnswer({ ...stateData });
         const coords = utils.getSavedCoords();
         getWeatherData(coords, 'hourly', processHourlyResponse)
