@@ -45,6 +45,16 @@ const getQuery = (id, type, queryData) => {
 const getWeatherData = (requestData, type, callBack) => {
   const { baseUrl, apiTypes, appId } = apiConfig;
   const query = getQuery(appId, type, requestData);
+
+  // I made data of probability of precipitation faked, becose api no free from october 2024
+  if (type === 'hourly') {
+    const fakeData = { data: { hourly: [{ pop: Math.random() }] } };
+    const response = new Promise((resolve, reject) => {
+      resolve(fakeData);
+    });
+    return response.then(callBack);
+  }
+
   return axios.get(`${baseUrl}/${apiTypes[type]}?${query}`).then(callBack);
 };
 
