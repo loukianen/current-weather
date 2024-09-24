@@ -4,7 +4,7 @@
   "description": "app for get a current data of the weather",
   "main": "src/index.jsx",
   "engines": {
-    "node": "14.x"
+    "node": "18.x"
   },
   "scripts": {
     "lint": "npx eslint . --ext jsx --ext js",
